@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="26px" height="24px" viewBox="0 0 26 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>Home-96</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect x="20.5" y="31.75" width="25" height="22.5" id="rect-1"></rect>
+    </defs>
+    <g id="Home-|-Live-|-Playback" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="O005_Home_Dash_003" transform="translate(-20.000000, -112.000000)">
+            <g id="Left-Nav-Bar" transform="translate(0.000000, 81.000000)">
+                <g id="Home-96">
+                    <image x="20.5" y="31.75" width="25" height="22.5" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABICAYAAABhlHJbAAAABGdBTUEAA1teXP8meAAAAwxJREFUeAHt2o1xozAQBeBwcwW4FNIBKeE6wJU5HdykAtyB6eR8FfjeY7SZcAGeiOSYn9WMIpsFSfshY83ET08LLrfb7cS64Ckud2oBD01XHDH2VoHrgNp0bP0/PHaI7WeX5xEI9YI6VhhzxKHVAZgSdQrPUHlOOdTHbo8FvD8mFNHyXEfkigFEhToHz3x5TbXbVRfwatNIaOtdIgIsB5657wsRWZ8s84ztPvaKd8Kz+7BdRGQ4tkG25HO1Dcfa1HORCaFeUL+rcKxtICKR2A1yblwirnuvGPC4X3tU4dh3Rfxxr2cFJl6h7wb1kR8ljt2EueDlSgomnHOPh+6ylHoVfEh1iXh2B5aNiFmebKYLbpe5V1wJnt3XbIhF6nMBM+KD+jdqldrXN19/xni/iqK4poybBBjw+E1bpkzigde2GPslBfHL2xjgEW3NeLxvXQ4hF76fXb60Aj/gHWaPuMwLrpgWV2I7d3qzVyDwKgzClbcVPJoxlybkxvfRZRYgBqjR89bwDMsQmWN0if4IB7xTdM/rPvGIj/NrTApRgMAjXB3T4YbOeQXiUeUjAXeKZ24ScRQQcHwmrHGDbMnnas/oaHTDPQgY8PhlUeaaxcr7aTH/F3ykr//n8elbGHhEc7y+VGcSbHqR3gr8gHfoneVvTIArkCuxtQPvKxB4FQ5y5Tme6XxuadMEqy7aAeJAzQCq43Usk38MseZZRcA7TV7iwTGBY+8ZOHQWgG9Dx/dyDM+7SaP3Z+BeQHLn6YCJog7ogIkCiZf7CnTARIHEy30FJgL+TLw++XK1z1IDPHqf6itQ3SERd0ABpMIOqIRE3AEFkAo7oBIScQcUQCrsgEpIxB1QAKmwAyohEXdAAaTCDqiERNwBBZAKO6ASEnEHFEAq7IBKSMQdUACpsAMqIRF3QAGkwg6ohETcAQWQCjugEhJxBxRAKuyASkjEYwD/ij62HJa5xwCetywkcpO5T/76kp3jP/8lmgtf36Ms/JcJz5hfO5W3XIGhg2d08oYql/TUYCuJMUfmKvGYzz99wECfHFKaNgAAAABJRU5ErkJggg=="></image>
+                    <use fill="#F1573C" fill-rule="evenodd" xlink:href="#rect-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

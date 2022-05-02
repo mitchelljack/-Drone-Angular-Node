@@ -1,0 +1,263 @@
+
+<style type="text/css">
+	.profileTab {
+		/*height:500px;*/
+		padding:0px;
+		margin:11px;
+		background-color:white	;
+	}
+</style>
+<div class="blur">
+    <nav>
+        <div class="nav-wrapper menu">
+            <div class="col s12">
+                <div style="padding-left:30px;">
+                    <a href="#/home" class="breadcrumb">My Profile</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mainContent" style="background-color: #F5F5F5; height:100%;" class="row">
+        <div class="col s12 m4 l4">
+            <div class="card s12 m12 l12" style="padding:10px 20px">
+            	<h6>{{profile.firstname}} {{profile.lastname}}</h6>
+                <br>
+                <div class=" center-align">
+										<div class="row" style="width:50%;margin:0px auto">
+												<div class="col s12 m12 l12">
+													<div ng-hide="picFile!=null" ngf-select ng-model="picFile" accept="image/*" id="getWidthOperator" class="'uav-empty-image'">
+															<img style="margin:10% 0% 10% 0%;width:100%; border-radius: 50%" ng-src="{{profile.croppedDataUrl}}">
+													</div>
+													<div ng-hide="picFile==null" ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+															<img-crop style="height:300px;" image="picFile  | ngfDataUrl" result-image="profile.croppedDataUrl" ng-init="profile.croppedDataUrl=''"> </img-crop>
+													</div>
+												</div>
+										</div>
+										<a style="margin-top:20px;margin-bottom:20px; font-size:12px;" class="waves-effect buttonDisabled waves-light btn red">{{profile.operator}}</a>
+            				<!-- <h6 ng-show="profile.date">Member since {{ profile.date | date :  "MMM yyyy" }}</h6> -->
+								</div>
+                <div class="center-align" style="margin:0px auto;">
+									<div class="row">
+											<div class="col s12 m12 l12">
+												<div class="input-field">
+													<label class="under-label">Username</label>
+													<span><input ng-model="profile.username" placeholder="Enter Username" type="text" class="validate profilePrevent" required></span>
+												</div>
+											</div>
+									</div>
+									<div class="row">
+											<div class="col s12 m12 l12">
+												<div class="input-field">
+													<label class="under-label">Email</label>
+													<span><input ng-model="profile.email" placeholder="Enter Email Address" type="text" class="validate profilePrevent" required></span>
+												</div>
+											</div>
+									</div>
+								</div>
+                <div class="center-align" style="margin:0px auto;">
+									<a ng-hide="loading" ng-click = "resetPassword()" style="margin-top:20px;margin-bottom:20px;" class="waves-effect waves-light btn btn-medium">Reset Password</a>
+								</div>
+            </div>
+        </div>
+        <div class="col s12 m8 l8" style="margin:10px 0;">
+				<div class="col s12 m12 l12" style="padding:0px;">
+					<ul class="tabs">
+						<li class="tab col s4"><a class="active" href="#accountTab"> Account Information</a></li>
+						<li class="tab col s4"><a class="" href="#billingTab">Billing Information</a></li>
+						<li class="tab col s4"><a href="#activityTab">Activity</a></li>
+					</ul>
+				</div>
+				<div id="accountTab" class="col s12 m12 l12 profileTab" style="margin:0px;">
+					<hr>
+					<div class="row">
+							<div class="col s6 m6 l6">
+								<label style="font-size:14px;" class="red-text">First Name*</label>
+								<div class="input-field">
+									<input ng-model="profile.firstname" placeholder="First Name" type="text" class="validate" required>
+								</div>
+							</div>
+							<div class="col s6 m6 l6">
+								<label style="font-size:14px;" class="red-text">Last Name*</label>
+								<div class="input-field">
+									<input ng-model="profile.lastname" placeholder="Last Name" type="text" class="validate" required>
+								</div>
+							</div>
+					</div>
+					<div class="row">
+						<div class="col s6 m6 l6">
+							<label style="font-size:14px;" class="red-text">Phone Number*</label>
+							<div class="input-field">
+								<input phone-input ng-model="profile.phoneNumber" placeholder="Phone" type="text" class="validate" required>
+							</div>
+						</div>
+						<div class="col s6 m6 l6">
+							<label style="font-size:14px;" class="red-text">Zipcode*</label>
+							<div class="input-field">
+								<input ng-model="profile.zipcode" placeholder="Zipcode" type="text" class="validate" required>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+							<div class="col s6 m6 l6">
+								<label style="font-size:14px;" class="red-text">Country*</label>
+								<div class="input-field">
+										<select ng-model="profile.country" material-select required>
+												<option>USA</option>
+												<option>Australia</option>
+										</select>
+								</div>
+							</div>
+							<div class="col s6 m6 l6">
+								<label style="font-size:14px;" class="red-text">State*</label>
+								<div class="input-field">
+									<select required ng-model="profile.state" material-select watch>
+											<option ng-repeat="territory in states[profile.country]">{{territory}}</option>
+									</select>
+								</div>
+							</div>
+					</div>
+					<div class="row">
+							<div class="col s6 m6 l6">
+								<label style="font-size:14px;" class="red-text">Address*</label>
+								<div class="input-field">
+									<input ng-model="profile.address" placeholder="Address" type="text" class="validate" required>
+								</div>
+							</div>
+							<div class="col s6 m6 l6">
+								<label style="font-size:14px;" class="red-text">City*</label>
+								<div class="input-field">
+									<input ng-model="profile.city" placeholder="City" type="text" class="validate" required>
+								</div>
+							</div>
+					</div>
+					<div class=" center-align" style="margin:0px auto;">
+						<a ng-hide="loading" ng-class="{disabled : !accountValidate() }" ng-click = "accountValidate() && accountSubmit()" style="margin-top:20px;margin-bottom:20px;width:40%" class="waves-effect waves-light btn btn-medium">Update</a>
+					</div>
+				</div>
+				<div id="billingTab" class="col s12 m12 l12 profileTab" style="margin:0px;">
+					<!-- <div class="" ng-class="{error: isError, success: isPaid}"> -->
+					<hr>
+					<div class="row">
+
+			 			<!-- <form name="payment" ng-submit="processPayment()" ng-show="showForm">
+							<div class="col s12 m12 l12">
+								<label style="font-size:14px;" class="red-text">Credit Card Number (XXXX XXXX XXXX XXXX)</label>
+								<div class="input-field">
+									<input placeholder="Credit Card Number" type="text" ng-model="profile.creditCardNumber" class="validate" required>
+								</div>
+							</div>
+
+							<div class="col s12 m12 l12">
+								<label style="font-size:14px;" class="red-text">Expiration Date (MM/YY)</label>
+								<div class="input-field">
+									<input placeholder="Expiration Date" type="text" ng-model="profile.expirationDate" class="validate" required>
+								</div>
+							</div>
+
+							<div class=" center-align" style="margin:0px auto;">
+								<a  ng-hide="loading" ng-click = "updatePayment()" style="margin-top:20px;margin-bottom:20px;width:40%" class="waves-effect waves-light btn btn-medium">Verify Account</a>
+							</div>
+						</form> -->
+						<br>
+						<div class="col s8 m8 l8">
+							<h5 class="center" style="margin:0px;">Flight Plans</h5>
+							<div class="pa-plans-list">
+								<div class="row" style="margin:0px;" ng-repeat="plan in braintreePlans">
+										<div class="input-field col s6 m6 l8">
+											<input type="radio" id="{{plan.id}}" name="pa-plans" ng-model="profile.pa_plans" value="{{plan.id}}" ng-checked="plan.id==profile.pa_plans"/>
+											<label for="{{plan.id}}">{{plan.name}}</label>
+										</div>
+										<div class="input-field col s6 m6 l4">
+											<label>${{plan.price}} / Month</label>
+										</div>
+								</div>
+							</div>
+						</div>
+						<br>
+					</div>
+					<div class="row">
+						<br>
+						<div class="col s8 m8 l8">
+							<h5 class="center" style="margin:0px;">Payment Information</h5>
+							<div class="row">
+								<div class="input-field col s3 m3 l3">
+									<input type="radio" id="payment_type_visa" name="payment_type" value="visa" ng-model="profile.payment_type" ng-checked="profile.payment_type=='visa'"/>
+									<label for="payment_type_visa"><img src="images/Visa-40.png"></label>
+								</div>
+								<div class="input-field col s3 m3 l3">
+									<input type="radio" id="payment_type_master" name="payment_type" value="master" ng-model="profile.payment_type" ng-checked="profile.payment_type=='master'"/>
+									<label for="payment_type_master"><img src="images/Mastercard-40.png"></label>
+								</div>
+								<div class="input-field col s3 m3 l3">
+									<input type="radio" id="payment_type_american" name="payment_type" value="american" ng-model="profile.payment_type" ng-checked="profile.payment_type=='american'"/>
+									<label for="payment_type_american"><img src="images/Amex-40.png"></label>
+								</div>
+								<div class="input-field col s3 m3 l3">
+									<input type="radio" id="payment_type_discover" name="payment_type" value="discover" ng-model="profile.payment_type" ng-checked="profile.payment_type=='discover'"/>
+									<label for="payment_type_discover"><img src="images/Discover-40.png"></label>
+								</div>
+							</div>
+							<div class="row" style="margin-bottom:0px;">
+									<div class="input-field col s8 m8 l8">
+										<input id="credit_card" type="text" name="credit_card" ng-model="profile.creditCardNumber1">
+										<label for="credit_card" class="">Credit Card Number</label>
+									</div>
+									<div class="input-field col s4 m4 l4">
+										<input id="security_code" type="text" name="security_code" ng-model="profile.securityCode1">
+										<label for="security_code" class="">Security Code</label>
+									</div>
+							</div>
+							<div class="row">
+									<div class="input-field col s12 m12 l12" style="margin:0px;">
+										<label for="expire_date" class="">Expire Date</label>
+									</div>
+							</div>
+							<div class="row">
+								<div class="input-field col s3 m3 l3">
+									<select name="expire_month" id="expire_month" ng-model="profile.expire_month">
+										<option value="" disabled selected>Month</option>
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+										<option value="5">5</option>
+										<option value="6">6</option>
+										<option value="7">7</option>
+										<option value="8">8</option>
+										<option value="9">9</option>
+										<option value="10">10</option>
+										<option value="11">11</option>
+										<option value="12">12</option>
+							  	</select>
+								</div>
+								<div class="input-field col s3 m3 l3">
+									<select name="expire_year" id="expire_year" ng-model="profile.expire_year">
+										<option value="" disabled selected>Year</option>
+										<option value="2017">2017</option>
+										<option value="2018">2018</option>
+										<option value="2019">2019</option>
+										<option value="2020">2020</option>
+										<option value="2021">2021</option>
+										<option value="2022">2022</option>
+							  	</select>
+								</div>
+							</div>
+
+							<div class="center-align" style="margin:0px auto;">
+								<a  ng-hide="loading" ng-click = "updatePayment()" style="margin-top:20px;margin-bottom:20px;width:40%" class="waves-effect waves-light btn btn-medium">Update</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="activityTab" class="col s12 m12 l12 profileTab" style="margin:0px;">
+					<h5>This feature will be coming soon.</h5>
+				</div>
+    		</div>
+		</div>
+</div>
+<script type='text/javascript'>
+    $(document).ready(function () {
+				$('ul.tabs').tabs();
+
+    });
+</script>

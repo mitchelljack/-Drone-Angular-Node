@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Precision Autonomy</title>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+	  <style type="text/css">
+	  	body{
+	  		background-color: #F6F6F6;
+	  	}
+	  	#submit{
+	  		background-color: #F1573C;
+	  	}
+	  	#extratop{
+	  		height:100px;
+	  	}
+	  	@media only screen and (max-width: 1026px) {
+    	#extratop {
+        	display: none;
+    		}
+		}
+	  </style>
+</head>
+<body>
+<div id="extratop" class="row col sm0">
+
+</div>
+<div class="row">
+	<div class="col s12 m3 l4 white-text">.</div>
+	<div class="col s12 m6 l4">
+		<div class="card col l12 m12 s12 grey lighten-3">
+			<img class="container" style="width:100%;padding:50px" src="images/logo.png">
+			<form>
+        		<div class="input-field col s12 m12 l12">
+		        	<input name="password" id="password" type="password" class="validate">
+		        	<label for="password">Password</label>
+        		</div>
+				<div class="input-field col s12 m12 l12">
+		        	<input name="repassword" id="repassword" type="password" class="validate">
+		        	<label for="repassword">Repeat Password</label>
+        		</div>
+        		<div class="input-field col s12 m12 l12">
+		        	<input onclick="submit()" value="Reset" class="btn col s12 m12 l12" id="submit" class="validate">
+        		</div>
+        		<div  style="margin-top:25px;" class="col s12 m12 l6"></div>
+
+			</form>
+
+		</div>
+	</div>
+	<div class="col s12 m3 l4"></div>
+
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+
+<script type="text/javascript">
+	$("#submit").click(function(){
+		var password = document.getElementById('password').value;
+		var repassword = document.getElementById('repassword').value;
+		if(password && password==repassword)
+		{
+			$.post('users/reset/change',{"password":password},function(data){
+				if(data=="success"){
+					location.href= "/main.html";
+				}
+				else{
+					alert("there was some error");
+				}
+			});
+		}
+		else{
+			// alert("Passwords entered do not match.");
+			$('#errorModal').openModal();
+		}
+
+	});
+</script>
+
+<div id="errorModal" class="modal">
+	<div class="modal-content center">
+		<img class="container" style="width: 30%;" src="images/logo.png">
+		<p>Passwords entered do not match.</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+	</div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+<div class="row">
+	<div class="col l12 m12 s12">
+		<div class="card" style="margin:15 20 0 20">
+			<div style="background-color:#4A4A4A; padding:5px">
+				<h3 class="center white-text">CREATE A PILOT
+					<a href="#/inventory" style="display:inline-block;float:right;width:2.92rem;height:2.92rem;background-color:white;border-radius:50%;color:black;margin-right:15px">
+						<i style="padding-top:9px" class="material-icons">close</i>
+					</a>
+				</h3>
+			</div>
+			<div ng-show="view == 'view1'">
+				<div class="row" style="padding:15 10 15 10">
+
+					<div class="col s12 m12 l12">
+						<label style="font-size:24px" class="red-text">Select existing pilots company below or add new company</label>
+						<div class="input-field">
+							<input ng-model="search" placeholder="Search for Company by Name | Job Name | Flight Name | Pilot Name | UAV" id="first_name" type="text" class="validate">
+						</div>
+					</div>
+				</div>
+				<div style="padding:0 20 15 20; max-height:400px;overflow:scroll">
+					<table class="bordered striped centered responsive-table inventoryTable">
+						<thead style="background-color:#4A4A4A;">
+							<tr>
+								<th>Company Name</th>
+								<th>Primary Job Type</th>
+								<th>Status</th>
+								<th>Jobs</th>
+								<th>Flights</th>
+								<th>Pilots</th>
+								<th>UAVs</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-click = "openView2(company.name)" ng-repeat = "company in companies | filter:search">
+								<td>{{company.name}}</td>
+								<td>{{company.jobType}}</td>
+								<td>{{company.status}}</td>
+								<td>{{company.jobs}}</td>
+								<td>{{company.flights}}</td>
+								<td>{{company.pilots}}</td>
+								<td>{{company.uavs}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div ng-show="view == 'view2'">
+				<div class="row">
+					<div class="col s12 m5 l5">.</div>
+					<div class="col s12 m2 l2">
+						<label>
+							<div style="padding: 0 10% 0 10%">
+								<img id="operatorPicPlaceholder" style="border-radius:50%;width:100%;display:none" src="">
+							</div>
+							<div id="getWidthOperator" style="padding: 20%;background-color:#6D6D6D;border-radius:50%;margin:10%;">
+								<img style="color:white;width:100%;" src="images/icons_2/user-male-silhouette.svg">
+							</div>
+							<input id="operatorPic" type="file" style="position: fixed; top: -100em">
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="container">
+						<div class="col s12 m6 l6">
+							<label style="font-size:14px;" class="red-text">NAME</label>
+							<div class="input-field">
+								<input ng-model="formInfo.name" type="text" name="">
+							</div>
+						</div>
+						<div class="col s12 m6 l6">
+							<label style="font-size:14px;" class="red-text">FLIGHT OPERATOR</label>
+							<div class="input-field">
+								<select>
+									<option>OPERATOR ROLE</option>
+									<option>UAV Model 2</option>
+									<option>UAV Model 3</option>
+									<option>UAV Model 4</option>
+									<option>UAV Model 5</option>
+									<option>UAV Model 6</option>
+								</select>
+							</div>
+						</div>
+						<div class="col s12 m6 l6"></div>
+					</div>
+				</div>
+				<br><br>
+				<div class="row">
+					<div class="container">
+						<div class="col s12 m6 l6">
+							<label style="font-size:14px;" class="red-text">PHONE NUMBER</label>
+							<div class="input-field">
+								<input type="number" name="">
+							</div>
+						</div>
+						<div class="col s12 m6 l6">
+							<label style="font-size:14px;" class="red-text">EMAIL</label>
+							<div class="input-field">
+								<input type="email" name="">
+							</div>
+						</div>
+						<div class="col s12 m6 l6"></div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="container">
+						<div class="col s12 m6 l6">
+							<label style="font-size:14px;" class="red-text">SET OPERATOR INITIAL PASSWORD</label>
+							<div class="input-field">
+								<input type="password" name="">
+							</div>
+						</div>
+						<div class="col s12 m6 l6">
+							<label style="font-size:14px;" class="red-text">WEBSITE</label>
+							<div class="input-field">
+								<input type="text" name="">
+							</div>
+						</div>
+						<div class="col s12 m6 l6"></div>
+					</div>
+				</div>
+				<div class="row center">
+					<button ng-click = "changeView('view3')" class="btn btn-floating btn-large red white-text">
+						<i class="material-icons">arrow_forward</i>
+					</button>
+				</div>
+			</div>
+			<div ng-show = "view== 'view3'">
+
+				<div class="container">
+					<div class="row"><div style="margin-top:10%;" class="hide-on-small-only"></div></div>
+					<form ng-submit = "addCertificate()" >
+						<table style="margin-top:20px;" class="striped">
+							<thead style="background-color:#4A4A4A;margin-top:10%;color:white;">
+								<tr>
+									<th style="border-radius:0px;">Classification Name</th>
+									<th style="border-radius:0px;">Expiration Date</th>
+								</tr>
+							</thead>
+							<tbody style="color:black;">
+								<tr ng-repeat= "certificate in certificates">
+									<td>{{certificate.name}}</td>
+									<td>{{certificate.expiration}}</td>
+								</tr>
+								<tr>
+
+									<td>
+										<div class="input-field">
+											<input ng-model="cname" id="last_name" placeholder="Add Certificate" type="text" class="validate">
+										</div>
+									</td>
+									<td>
+										<div class="input-field">
+											<input ng-model="cdate" id="last_name" placeholder="Add Expiration Date" type="text" class="validate">
+										</div>
+										<input hidden="" type="submit" name="">
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</form>
+					<div class="row center">
+						<button ng-click = "changeView('view2')" class="btn btn-floating btn-large grey white-text">
+							<i style="padding-left:15px" class="material-icons">arrow_backward</i>
+						</button>
+						<div style="width:20px;display:inline-block;"></div>
+						<button ng-click = "changeView('view4')" class="btn btn-floating btn-large red white-text">
+							<i class="material-icons">arrow_forward</i>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div ng-show = "view== 'view4'">
+				<div style="margin:10% 0 0 0" class="row"></div>
+				<div class="container">
+					<div class="row">
+						<div class="row">
+							<div class="input-field col s12 m6 l6">
+								<input id="numberInput" type="text" class="validate">
+								<label class="red-text" style="font-size:14px;" for="numberInput" type="number">Phone Number</label>
+							</div>
+							<div class="input-field col s12 m6 l6">
+								<input id="emailInput" type="text" class="validate">
+								<label class="red-text" style="font-size:14px;" for="emailInput" type="email">Email</label>
+							</div>
+							<br><br>
+						</div>
+						<div class="row">
+							<div class="input-field col s12 m6 l6">
+								<input id="addressInput" type="text" class="validate">
+								<label class="red-text" style="font-size:14px;" for="addressInput" type="number">Street Address</label>
+							</div>
+							<div class="input-field col s12 m6 l6">
+								<input id="cityInput" type="text" class="validate">
+								<label class="red-text" style="font-size:14px;" for="cityInput" type="email">City</label>
+							</div>
+							<br><br>
+						</div>
+						<div class="row">
+							<div class="col s12 m3 l3">
+								<div class="input-field">
+									<select id="stateInput">
+										<option>WA</option>
+										<option>WA2</option>
+										<option>WA3</option>
+										<option>WA4</option>
+										<option>WA5</option>
+									</select>
+									<label for="stateInput" style="font-size:14px;" class="red-text">STATE/TERRITORY</label>
+								</div>
+							</div>
+							<div class="col s12 m3 l3">
+								<div class="input-field">
+									<input id="zipInput" type="number" name="">
+									<label for="zipInput" style="font-size:14px;" class="red-text">ZIP CODE</label>
+								</div>
+							</div>
+							<div class="col s12 m3 l3">
+								<div input-field>
+									<select ng-bind = "state">
+										<option>AMERICA</option>
+										<option>AUSTRALIA</option>
+										<option>ENGLAND</option>
+										<option>PAKISTAN</option>
+										<option>OTHER</option>
+									</select>
+									<label for="" style="font-size:14px;" class="red-text">COUNTRY</label>
+								</div>
+							</div>
+							<br><br>
+						</div>
+					</div>
+				</div>
+				<div class="row center">
+					<button ng-click="changeView('view3')" class="btn btn-floating btn-large grey white-text">
+						<i style="padding-left:15px" class="material-icons">arrow_backward</i>
+					</button>
+					<div style="width:20px;display:inline-block;"></div>
+					<a href="#/done/pilot/{{name}}" class="btn btn-floating btn-large green white-text">
+						<i class="material-icons">done</i>
+					</a>
+				</div>
+			</div>
+			<div ng-show  = "view == 'company'">
+				<div class="row">
+					<div class="col s12 m4 l5">.</div>
+					<div class="col s12 m4 l2">
+						<label>
+							<div style="padding: 0 10% 0 10%">
+								<img id="companyPicPlaceholder" style="border-radius:50%;width:100%;display:none" src="">
+							</div>
+							<div id="getWidthCompany" style="margin:20px">
+								<div class="circle" style="background-color:#6D6D6D;">
+									<div style="margin-top:-50px;">
+										<h5>Add <br>Company <br>Logo</h5>
+									</div>
+								</div>
+							</div>
+							<input id="companyPic" type="file" style="position: fixed; top: -100em">
+						</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="container">
+						<div class="col s12 m6 l6">
+							<label style="font-size:14px;" class="red-text">STREET ADDRESS</label>
+							<div class="input-field">
+								<input placeholder="Enter the Operators Address" type="text" name="">
+							</div>
+						</div>
+						<div class="col s12 m6 l6">
+							<label style="font-size:14px;" class="red-text">CITY</label>
+							<div class="input-field">
+								<input placeholder="Enter the Operators Address" type="text" name="">
+							</div>
+						</div>
+						<div class="col s12 m3 l3">
+							<label style="font-size:14px;" class="red-text">STATE/TERRITORY</label>
+							<div class="input-field">
+								<select>
+									<option>WA</option>
+									<option>WA2</option>
+									<option>WA3</option>
+									<option>WA4</option>
+									<option>WA5</option>
+								</select>
+							</div>
+						</div>
+						<div class="col s12 m3 l3">
+							<label style="font-size:14px;" class="red-text">ZIP CODE</label>
+							<div class="input-field">
+								<input type="number" name="">
+							</div>
+						</div>
+						<div class="col s12 m6 l6">
+							<label style="font-size:14px;" class="red-text">COUNTRY</label>
+							<div class="input-field">
+								<select>
+									<option>Australia</option>
+									<option>America</option>
+									<option>England</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<br><br>
+				<div class="row center">
+					<div style="width:20px;display:inline-block;"></div>
+					<button ng-click = "changeView('view2')" class="btn btn-floating btn-large red white-text">
+						<i class="material-icons">arrow_forward</i>
+					</button>
+				</div>
+			</div>
+
+			<form style="padding:20px 0 20px 0" class="row center" >
+				<input disabled="" ng-model="view" class="with-gap" name="group1" type="radio" value = "view1" id="view1"  />
+				<label for="view1"></label>
+
+				<input disabled="" ng-model="view" class="with-gap" name="group1" type="radio" value="view2" id="view2" />
+				<label for="view2"></label>
+
+				<input  disabled="" ng-model="view" class="with-gap" name="group1" type="radio" value="view3" id="view3"  />
+				<label for="view3"></label>
+
+				<input disabled="" ng-model="view" class="with-gap" name="group1" type="radio" value="view4" id="view4" />
+				<label for="view4"></label>
+			</form>
+
+		</div>
+	</div>
+</div>

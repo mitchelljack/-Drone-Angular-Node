@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Precision Autonomy</title>
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+	  <style type="text/css">
+	  	body{
+	  		background-color: #F6F6F6;
+	  	}
+	  	#submit{
+	  		background-color: #F1573C;
+	  	}
+	  	#extratop{
+	  		height:100px;
+	  	}
+	  	@media only screen and (max-width: 1026px) {
+    	#extratop {
+        	display: none;
+    		}
+		}
+	  </style>
+</head>
+<body>
+<div id="extratop" class="row col sm0">
+
+</div>
+<div id="formArea" class="row">
+	<div class="col s12 m3 l4 white-text">.</div>
+	<div class="col s12 m6 l4">
+		<div class="card col l12 m12 s12 grey lighten-3">
+				<img class="container" style="width:100%;padding:50px" src="images/logo.png">
+				<p class="version-number" style="font-size:16px; color:#F1573C; text-align:center; margin:0px; margin-top:-40px;">V1.3.7</p>
+				<div class="input-field col s12 m12 l12">
+        	<input name="username" id="username" type="text">
+        	<label for="username">Username</label>
+    		</div>
+    		<div class="input-field col s12 m12 l12">
+        	<input name="password" id="password" type="password" >
+        	<label for="password">Password</label>
+    		</div>
+    		<div class="input-field col s12 m12 l12">
+        	<button class="btn col s12 m12 l12" id="submit">Let's Get Flying</button>
+    		</div>
+    		<!--<div class="row">
+      		 <div class="input-field col s12 m12 l6">
+      			<input type="checkbox" id="remember" />
+      			<label class="deep-orange-text accent-3" for="remember">KEEP ME SIGN IN</label>
+      		</div> -->
+      		<div class="col s12 center-align">
+
+	      		<span style="font-size:10px">Don't have an account?<a href="signup.html">Sign-Up </a></span>
+	      		<div style="margin:10px 0px" class="col s12 m12 l12 ">
+	      			<a class="deep-orange-text accent-3" href="forgottenpassword.html">FORGOT PASSWORD</a>
+	      		</div>
+      		</div>
+      	</div>
+		</div>
+	</div>
+	<div class="col s12 m3 l4"></div>
+
+</div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script type="text/javascript">
+	$("#submit").click(function() {
+		var username = $("#username").val();
+		var password = $("#password").val();
+		$.post('users/login',{"username":username,"password":password},function(res){
+			if(res.result){
+				if(res.data == 'Insured Operator')
+						location.href ="/main.html#/insured-home";
+				else
+						location.href ="/main.html#/home";
+			}
+			else{
+				// alert("Username or Password is incorrect");
+				$('#errorModal').openModal();
+
+			}
+		});		// body...
+});
+
+$("#formArea input").keypress(function (e) {
+	if (e.which == 13) {
+		var username = $("#username").val();
+		var password = $("#password").val();
+		$.post('users/login',{"username":username,"password":password},function(res){
+			if(res.result){
+				if(res.data == 'Insured Operator')
+						location.href ="/main.html#/insured-home";
+				else
+						location.href ="/main.html#/home";
+			}
+			else{
+				// alert("Username or Password is incorrect");
+				$('#errorModal').openModal();
+
+			}
+		});
+	}
+});
+</script>
+</body>
+
+
+<!-- Modal Structure -->
+<div id="errorModal" class="modal">
+	<div class="modal-content center">
+		<img class="container" style="width: 30%;" src="images/logo.png">
+		<p>Username or Password is incorrect</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">OK</a>
+	</div>
+</div>
+
+
+</html>

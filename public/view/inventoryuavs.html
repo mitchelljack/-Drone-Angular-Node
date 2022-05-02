@@ -1,0 +1,158 @@
+<nav style="background-color:#868687" class="hide-on-large-only" role="navigation">
+	<div class="nav-wrapper">
+		<ul id="nav-mobile" class="side-nav" style="background-color:#AEAEAF">
+			<li>
+				<a>
+					<img style="height:20px;display:inline-block" src="images/list.png" style="">
+					MISSIONS
+				</a>
+				<a href="">
+					<img src="images/flight.png" style="height:20px;display:inline-block">
+					FLIGHTS
+				</a>
+				<a href="">
+					<img src="images/manager.png" style="height:20px;display:inline-block">
+					PEOPLE
+				</a>
+				<a href="">
+					<img src="images/drone.png" style="height:20px;display:inline-block">
+					UAVs
+				</a>
+				<a href="">
+					<img src="images/dome.png" style="height:20px;display:inline-block">
+					PAYLOADS
+				</a>
+				<!-- <a href="">
+					<img src="images/pb.png" style="margin-top:-25px;width:60px">
+					PURPLE BOXES
+				</a> -->
+			</li>
+		</ul>
+		<a href="#" data-activates="nav-mobile" class="right button-collapse"><i style="margin-right:20px" class="material-icons">menu</i></a>
+	</div>
+</nav>
+
+<div>
+	<div class="row inventoryTabs hide-on-med-and-down" >
+		<a href="#/inventory">
+			<div class="col l2 m2 s4 tabButton">
+				<h5 class="margintop">MISSIONS</h5>
+				<br>
+				<img src="images/list.png" style="margin-top:-30px;">
+			</div>
+		</a>
+		<a href="#/inventory-flights">
+			<div class="col l2 m2 s4 tabButton">
+				<h5 class="margintop">FLIGHTS</h5>
+				<br>
+				<img src="images/flight.png" style="margin-top:-25px;width:60px">
+			</div>
+		</a>
+		<a href="#/inventory-people">
+			<div class="col l2 m2 s4 tabButton">
+				<h5 class="margintop">PEOPLE</h5>
+				<br>
+				<img src="images/manager.png" style="margin-top:-30px;width:50px">
+			</div>
+		</a>
+		<a href="#/inventory-uavs">
+			<div class="col l2 m2 s4 tabClicked">
+				<h5 class="margintop">UAVs</h5>
+				<br>
+				<img src="images/drone.png" style="margin-top:-25px;width:60px">
+			</div>
+		</a>
+		<a href="#/inventory-payload">
+			<div class="col l2 m2 s4 tabButton">
+				<h5 class="margintop">PAYLOADS</h5>
+				<br>
+				<img src="images/dome.png" style="margin-top:-25px;width:60px">
+			</div>
+		</a>
+		<!-- <a href="#/inventory-purple-boxes">
+			<div class="col l2 m2 s4 tabButton">
+				<h5 class="margintop">PURPLE BOXES</h5>
+				<br>
+				<img src="images/pb.png" style="margin-top:-25px;width:60px">
+			</div>
+		</a>	 -->
+	</div>
+	<div class="row inventoryInfo">
+		<div style="top: 140px; right:97px;">
+ 		 <!-- <a class="btn-floating  white" ng-click = "isSearching = !isSearching;">
+ 			 <i class="material-icons grey-text text-darken-2">search</i>
+ 		 </a> -->
+ 		 <image src="images/CSV2.jpg" style="float:right; margin-right:40px">
+ 		 <div style="display: inline-block; float:right; margin-right:40px; margin-top:-10px">
+ 			 <input style="float:left; border-radius: 5px; padding-left: 10px;" ng-change = "checkvalue()" type="text" ng-model = "search" name="search" input-field class="input-search" id="inventory-search">
+ 			 <img src="images/search.png" style="float:right; margin-top:-38px; width:15px; z-index:1">
+ 		 </div>
+	</div>
+		<!-- <div class="row inventoryInfo">
+			<div class="col s12 m4 l4">
+				<h1>{{totaluavs}}</h1>
+				<h6 style="margin-top:-2rem"># of UAVs</h6>
+			</div>
+			<div class="col s12 m4 l4">
+				<h1>{{readyuavs}}</h1>
+				<h6 style="margin-top:-2rem"># of Ready UAVs</h6>
+			</div>
+			<div class="col s12 m4 l4">
+				<h1>{{uavtypes.length}}</h1>
+				<h6 style="margin-top:-2rem"># of UAV Types</h6>
+			</div>
+		</div> -->
+		<div>
+			<table class="bordered striped centered responsive-table inventoryTable">
+				<thead style="background-color:#4A4A4A">
+					<tr>
+						<!-- <th class="inventoryHover" ng-click = "setOrder('serialNo')"  data-field="id">UAV ID <i class="material-icons inventoryDropDown">keyboard_arrow_down</i></th> -->
+						<th class="inventoryHover" ng-click = "setOrder('name')" data-field="price">Name <i class="material-icons inventoryDropDown">{{arrow}}</i></th>
+						<th class="inventoryHover" ng-click = "setOrder('model')"  data-field="name">Model <i class="material-icons inventoryDropDown">{{arrow}}</i></th>
+						<!-- <th class="inventoryHover" ng-click = "setOrder('type')"  data-field="price">Type <i class="material-icons inventoryDropDown">keyboard_arrow_down</i></th> -->
+						<th class="inventoryHover" ng-click = "setOrder('manufacturer')"  data-field="price">Manufacturer <i class="material-icons inventoryDropDown">{{arrow}}</i></th>
+						<th class="inventoryHover" ng-click = "setOrder('condition')"  data-field="price">Condition <i class="material-icons inventoryDropDown">{{arrow}}</i></th>
+						<th data-field="price">Actions</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr ng-repeat = "uav in uavs | filter:search | orderBy:order:flag">
+						<td><b>{{uav.name}}</b></td>
+						<!-- <td><b>{{uav.serialNo}}</b></td> -->
+						<td><b>{{uav.model}}</b></td>
+						<!-- <td><b>{{uav.type}}</b></td> -->
+						<td><b>{{uav.manufacturer}}</b></td>
+						<td><b>{{uav.condition}}</b></td>
+						<td style="color:#AEAEAF">
+							<a href='#/create-uav/{{uav._id}}'><i class="material-icons">mode_edit</i></a>
+							<a ng-click = "assignDelete(uav._id,uav._rev,$index)" href='#deleteModal' modal><i class="material-icons">delete</i></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<!-- <div class="fixed-action-btn" style="bottom: 90px; right: 27px;">
+		<a class="btn-floating  white" ng-click = "isSearching = !isSearching;">
+			<i class="material-icons grey-text text-darken-2">search</i>
+		</a>
+		<div style="display: inline-block;">
+			<input style="border-radius: 100px;padding-left: 20;box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)!important;" ng-change = "checkvalue()" type="text" ng-model = "search" ng-show="isSearching" name="search" input-field class="green white-text" id="inventory-search">
+		</div>
+	</div> -->
+
+
+	<!-- Modal Structure -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <h4>Confirm Deletion</h4>
+        <p>Are you sure you want to delete this document?</p>
+    </div>
+    <div class="modal-footer">
+        <button ng-click = deleteClicked() class="btn red" style="margin:15px;">Delete</button>
+        <button ng-click = "closeDeleteModel()" class="btn light-blue" style="margin:15px;">Cancel</button>
+    </div>
+</div>

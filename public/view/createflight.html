@@ -1,0 +1,430 @@
+<!--
+noUiEdit
+-->
+<style type="text/css">
+    .greenSlider .noUi-connect {
+        background-color: #417505 !important;
+    }
+
+    .greenSlider .noUi-horizontal .noUi-handle {
+        background-color: #417505 !important;
+    }
+
+    .greenSlider .noUi-target .range-label {
+        background-color: #417505 !important;
+    }
+
+    .switch label input[type=checkbox]:checked+.lever {
+        background-color: #a0ba82;
+    }
+
+    .switch label input[type=checkbox]:checked+.lever:after {
+        background-color: #417505;
+    }
+
+    .redSlider .noUi-connect {
+        background-color: #f44336 !important;
+    }
+
+    .redSlider .noUi-horizontal .noUi-handle {
+        background-color: #f44336 !important;
+    }
+
+    .redSlider .noUi-target .range-label {
+        background-color: #f44336 !important;
+    }
+
+
+    .yellowSlider .noUi-connect {
+        background-color: #FF9900 !important;
+    }
+
+    .yellowSlider .noUi-horizontal .noUi-handle {
+        background-color: #FF9900 !important;
+    }
+
+    .yellowSlider .noUi-target .range-label {
+        background-color: #FF9900 !important;
+    }
+
+
+
+
+</style>
+<div class="row">
+    <div class="col l12 m12 s12">
+        <div class="card" style="margin:15 20 0 20">
+            <div style="background-color:#4A4A4A; padding:5px">
+                <h3 class="center white-text">{{titles[view]}}
+                 <a href="#/inventory" style="display:inline-block;float:right;width:2.92rem;height:2.92rem;background-color:white;border-radius:50%;color:black;margin-right:15px">
+                  <i style="padding-top:9px" class="material-icons">close</i>
+              </a>
+          </h3> </div>
+            <div ng-show="view == 'view1'">
+                <div class="row" style="padding:15 10 15 10">
+                    <div class="col s12 m6 l6">
+                        <label class="red-text">Customer Name</label>
+                        <div class="input-field">
+                            <input name="customerName" ng-model="formInfo.customerName" placeholder="Start Typing Customer Name" type="text" class="validate"> </div>
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <label class="red-text">Job Type</label>
+                        <div class="input-field">
+                            <input ng-model="formInfo.jobType" placeholder="Start Typing Job Type" type="text" class="validate"> </div>
+                    </div>
+                </div>
+                <div style="padding:0 20 15 20; max-height:400px;overflow:auto">
+                    <table class="bordered striped centered responsive-table inventoryTable">
+                        <thead style="background-color:#4A4A4A;">
+                            <tr>
+                                <th>Job Name</th>
+                                <th>Job Type</th>
+                                <th>Status</th>
+                                <th>Cost</th>
+                                <th>Flights</th>
+                                <th>Pilots</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-click="openView2(job.value.name)" ng-repeat="job in jobs | filter:{value:{jobType:formInfo.jobType,name:formInfo.customerName}}">
+                                <td>{{job.value.name}}</td>
+                                <td>{{job.value.jobType}}</td>
+                                <td>{{job.value.status}}</td>
+                                <td>{{job.value.cost}}</td>
+                                <td>{{job.value.activeFlights + job.value.pendingFlights+job.value.inactiveFlights}}</td>
+                                <td>{{job.value.pilots}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style=" text-align: center;padding: 20 20 20 20;font-size: 24;">Select the JOB to add a FLIGHT</div>
+            </div>
+            <div ng-show="view == 'view2'">
+                <br>
+                <div class="row">
+                    <div class="col s12 m5 l5">
+                        <div class="z-depth-1">
+                            <div class="assignmentHeader">
+                                <h5>Assigned Pilots</h5> </div>
+                            <div class="assignmentContent">
+                                <div>
+                                    <div ng-show="assignedPilots" style="padding:0px" class="col s12 m12 l4">
+                                        <div ng-click="aPilotClicked(assignedPilots)" class="z-depth-1 white" style="margin:5px;padding:20px"> <img style="" ng-src={{assignedPilots.image}} alt="" class="assignmentImages">
+                                            <h6 class="center">{{assignedPilots.name}}</h6> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding:0px" class="col m2 l1">
+                        <div  class="valign-wrapper hide-on-small-only"  style="height:70%;">
+                            <div style="padding-left:30%;" class="valign">
+                                <button ng-click="uAllPilotClicked();" class="btn btn-floating light-blue white-text"><i class="material-icons">arrow_forward</i></button><br>
+                                <button ng-click="aAllPilotClicked();" class="btn btn-floating light-blue white-text"><i style="padding-left:5px" class="material-icons">arrow_backward</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m5 l5">
+                        <div class="z-depth-1">
+                            <div class="assignmentHeader">
+                                <h5>Un-Assigned Pilots</h5> </div>
+                            <div class="getsize assignmentContent">
+                                <div>
+                                    <div ng-repeat="pilot in unAssignedPilots" style="padding:0px" class="col s12 m12 l4">
+                                        <div ng-click="uPilotClicked($index)" class="z-depth-1 white" style="margin:5px;padding:20px"> <img style="" ng-src={{pilot.image}} alt="" class="assignmentImages">
+                                            <h6 class="center">{{pilot.name}}</h6> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center">
+                    <button ng-click="next('view1')" class="btn btn-floating btn-large grey white-text"> <i style="padding-left:15px" class="material-icons">arrow_backward</i> </button>
+                    <div style="width:20px;display:inline-block;"></div>
+                    <button ng-class="{disabled:assignedPilots.length==0}" ng-click="assignedPilots.length!=0 && next('view3')" class="btn btn-floating btn-large red white-text"> <i class="material-icons">arrow_forward</i> </button>
+                </div>
+            </div>
+            <div ng-show="view == 'view3'">
+                <br>
+                <div class="row">
+                    <div class="col s12 m5 l5">
+                        <div class="z-depth-1">
+                            <div class="assignmentHeader">
+                                <h5>Assigned UAVs</h5> </div>
+                            <div class="assignmentContent">
+                                <div>
+                                    <div ng-repeat="uav in assignedUavs" style="padding:0px" class="col s12 m12 l4">
+                                        <div ng-click="aUavClicked($index)" class="z-depth-1 white" style="margin:5px;padding:20px"> <img style="" ng-src="{{uav.image}}" alt="" class="assignmentImages">
+                                            <h6 class="center">{{uav.nickname}}</h6> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding:0px" class="col m2 l1">
+                        <div  class="valign-wrapper hide-on-small-only"  style="height:70%;">
+
+                            <div style="padding-left:30%;" class="valign">
+                                <button class="btn btn-floating light-blue white-text"><i class="material-icons">arrow_forward</i></button><br>
+                                <button class="btn btn-floating light-blue white-text"><i style="padding-left:5px" class="material-icons">arrow_backward</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m5 l5">
+                        <div class="z-depth-1">
+                            <div class="assignmentHeader">
+                                <h5>Un-Assigned UAVs</h5> </div>
+                            <div class="getsize assignmentContent">
+                                <div>
+                                    <div ng-repeat="uav in unAssignedUavs" style="padding:0px" class="col s12 m12 l4">
+                                        <div ng-click="uUavClicked($index)" class="z-depth-1 white" style="margin:5px;padding:20px"> <img style="" ng-src="{{uav.image}}" alt="" class="assignmentImages">
+                                            <h6 class="center">{{uav.nickname}}</h6> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center">
+                    <button ng-click="next('view2')" class="btn btn-floating btn-large grey white-text"> <i style="padding-left:15px" class="material-icons">arrow_backward</i> </button>
+                    <div style="width:20px;display:inline-block;"></div>
+                    <button ng-class="{disabled:assignedUavs.length==0}" ng-click="assignedUavs.length!=0 && next('view4')" class="btn btn-floating btn-large red white-text"> <i class="material-icons">arrow_forward</i> </button>
+                </div>
+            </div>
+            <div ng-show="view == 'view4'">
+                <br>
+                <div class="row">
+                    <div class="col s12 m5 l5">
+                        <div class="z-depth-1">
+                            <div class="assignmentHeader">
+                                <h5>Assigned Purple Boxes</h5> </div>
+                            <div class="assignmentContent">
+                                <div>
+                                    <div ng-show="assignedPBs" style="padding:0px" class="col s12 m12 l4">
+                                        <div ng-click="aPBClicked(assignedPBs)" class="z-depth-1 white" style="margin:5px;padding:20px"> <img style="" ng-src="{{assignedPBs.image}}" alt="" class="assignmentImages">
+                                            <h6 class="center">{{assignedPBs.nickname}}</h6> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding:0px" class="col m2 l1">
+                        <div  class="valign-wrapper hide-on-small-only"  style="height:70%;">
+
+                            <div style="padding-left:30%;" class="valign">
+                                <button class="btn btn-floating light-blue white-text"><i class="material-icons">arrow_forward</i></button><br>
+                                <button class="btn btn-floating light-blue white-text"><i style="padding-left:5px" class="material-icons">arrow_backward</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m5 l5">
+                        <div class="z-depth-1">
+                            <div class="assignmentHeader">
+                                <h5>Un-Assigned Purple Boxes</h5> </div>
+                            <div class="getsize assignmentContent">
+                                <div>
+                                    <div ng-repeat="pb in unAssignedPBs" style="padding:0px" class="col s12 m12 l4">
+                                        <div ng-click="uPBClicked($index)" class="z-depth-1 white" style="margin:5px;padding:20px"> <img style="" ng-src="{{pb.image}}" alt="" class="assignmentImages">
+                                            <h6 class="center">{{pb.nickname}}</h6> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center">
+                    <button ng-click="next('view3')" class="btn btn-floating btn-large grey white-text"> <i style="padding-left:15px" class="material-icons">arrow_backward</i> </button>
+                    <div style="width:20px;display:inline-block;"></div>
+                    <button ng-class="{disabled:assignedPBs.length==0}" ng-click="assignedPBs.length!=0 && next('view5')" class="btn btn-floating btn-large red white-text"> <i class="material-icons">arrow_forward</i> </button>
+                </div>
+            </div>
+            <div ng-show="view == 'view5'">
+                <br>
+                <div class="row">
+                    <div class="col s12 m5 l5">
+                        <div class="z-depth-1">
+                            <div class="assignmentHeader">
+                                <h5>Assigned Payloads</h5> </div>
+                            <div class="assignmentContent">
+                                <div>
+                                    <div ng-repeat="payload in assignedPayloads" style="padding:0px" class="col s12 m12 l4">
+                                        <div ng-click="aPayloadClicked($index)" class="z-depth-1 white" style="margin:5px;padding:20px"> <img style="" ng-src="{{payload.image}}" alt="" class="assignmentImages">
+                                            <h6 class="center">{{payload.nickname}}</h6> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding:0px" class="col m2 l1">
+                        <div  class="valign-wrapper hide-on-small-only"  style="height:70%;">
+
+                            <div style="padding-left:30%;" class="valign">
+                                <button class="btn btn-floating light-blue white-text"><i class="material-icons">arrow_forward</i></button><br>
+                                <button class="btn btn-floating light-blue white-text"><i style="padding-left:5px" class="material-icons">arrow_backward</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m5 l5">
+                        <div class="z-depth-1">
+                            <div class="assignmentHeader">
+                                <h5>Un-Assigned Payloads</h5> </div>
+                            <div class="getsize assignmentContent">
+                                <div>
+                                    <div ng-repeat="payload in unAssignedPayloads" style="padding:0px" class="col s12 m12 l4">
+                                        <div ng-click="uPayloadClicked($index)" class="z-depth-1 white" style="margin:5px;padding:20px"> <img style="" ng-src="{{payload.image}}" alt="" class="assignmentImages">
+                                            <h6 class="center">{{payload.nickname}}</h6> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center">
+                    <button ng-click="next('view4')" class="btn btn-floating btn-large grey white-text"> <i style="padding-left:15px" class="material-icons">arrow_backward</i> </button>
+                    <div style="width:20px;display:inline-block;"></div>
+                    <button ng-hide="loading" ng-class="{disabled:assignedPayloads.length==0}" ng-click="assignedPayloads.length!=0 && submit()" class="btn btn-floating btn-large red white-text"> <i class="material-icons">done</i></button>
+                </div>
+            </div>
+            <!-- <div ng-show="view == 'view6'">
+                <div class="row container">
+                    <div class="col m12 l12 s12">
+                        <h5>SET FLIGHT RADIUS(km)</h5>
+                    </div>
+                    <div class="row">
+                        <div style="padding-top:20;padding-bottom:20" class="col s12">
+                            <div id="range" ng-change="changeRadius()" nouislider ng-model="formInfo.mapRadius" min="0" max="100"></div>
+                            <div>
+                                <table width=100% style='font-family: monospace;table-layout:fixed;margin-top: -28px;margin-left: -10px'>
+                                    <tr style="font-size: 34;color: rgba(191, 191, 191, 0.21);">
+                                        <td style="margin-left: :0px" ng-repeat="i in getNumber(myOtherNumber) track by $index">|</td>
+                                    </tr>
+                                    <tr>
+                                        <td ng-repeat="i in getNumber(myOtherNumber) track by $index">{{$index*5}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="createJobMap" id="createJobMap"></div>
+                </div>
+                <br>
+                <div class="row center">
+                    <button ng-click="next('view5')" class="btn btn-floating btn-large grey white-text"> <i style="padding-left:15px" class="material-icons">arrow_backward</i> </button>
+                    <div style="width:20px;display:inline-block;"></div>
+                    <a ng-click="formInfo.mapRadius!=0 && next('view7')" ng-class="{disabled: !formInfo.mapRadius!=0}" class="btn btn-floating btn-large red white-text"> <i class="material-icons">arrow_forward</i> </a>
+                </div>
+            </div>
+            <div ng-show="view == 'view7'">
+                <div class="container center">
+                    <div>
+                        <div style="margin-top:40px" class="row">
+                            <div class="col s12 m1 l1">RED</div>
+                            <div class="col s12 m1 l1">YELLOW</div>
+                            <div class="col s12 m1 l1">GREEN</div>
+
+                            <h6 class="col s12 m6 l6">Air Pressure(psi)</h6>
+                            <div class="col s12 m1 l1">GREEN</div>
+                            <div class="col s12 m1 l1">YELLOW</div>
+                            <div class="col s12 m1 l1">RED</div>
+                        </div>
+                        <div id="airPressureDiv" class="row">
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.airPressure[0][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.airPressure[1][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.airPressure[2][0]"></div>
+
+                            <h6 class="col s12 m6 l6">.</h6>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.airPressure[0][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.airPressure[1][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.airPressure[2][1]"></div>
+                        </div>
+                    </div>
+                    <div id="altitudeDiv" >
+                        <div style="margin-top:20px" class="row">
+                            <h6>Altitude(m)</h6> </div>
+                        <div class="row">
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.altitude[0][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.altitude[1][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.altitude[2][0]"></div>
+
+                            <h6 class="col s12 m6 l6">.</h6>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.altitude[0][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.altitude[1][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.altitude[2][1]"></div>
+                        </div>
+                    </div>
+                    <div id="humidityDiv" >
+                        <div style="margin-top:20px" class="row">
+                            <h6>Humidity(%)</h6> </div>
+                        <div class="row">
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.humidity[0][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.humidity[1][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.humidity[2][0]"></div>
+
+                            <h6 class="col s12 m6 l6">.</h6>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.humidity[0][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.humidity[1][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.humidity[2][1]"></div>
+                        </div>
+                    </div>
+                    <div id="temparatureDiv">
+                        <div style="margin-top:20px" class="row">
+                            <h6>Temparature(&deg;C)</h6> </div>
+                        <div class="row">
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.temparature[0][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.temparature[1][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.temparature[2][0]"></div>
+
+                            <h6 class="col s12 m6 l6">.</h6>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.temparature[0][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.temparature[1][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.temparature[2][1]"></div>
+                        </div>
+                    </div>
+                    <div id="soundDiv" >
+                        <div style="margin-top:20px" class="row">
+                            <h6>Sound(db)</h6> </div>
+                        <div class="row">
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.sound[0][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.sound[1][0]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.sound[2][0]"></div>
+
+                            <h6 class="col s12 m6 l6">.</h6>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.sound[0][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.sound[1][1]"></div>
+                            <div class="col s12 m1 l1"><input type="number" material-input ng-model = "formInfo.sound[2][1]"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="switch" style="margin-top:40;margin-bottom:40;"> <span style="font-weight:600">Detect Ambient Light</span>
+                            <label>
+                                <input ng-model="formInfo.detectAmbiant" type="checkbox"> <span class="lever"></span> </label>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <button ng-click="next('view5')" class="btn btn-floating btn-large grey white-text"> <i style="padding-left:15px" class="material-icons">arrow_backward</i> </button>
+                        <div style="width:20px;display:inline-block;"></div>
+                        <a ng-hide="loading" ng-click="submit()" class="btn btn-floating btn-large green white-text"> <i class="material-icons">done</i> </a>
+                    </div>
+                </div>
+            </div> -->
+            <form style="padding:20px 0 20px 0" class="row center">
+                <input ng-model="view" disabled="" class="with-gap" name="group1" type="radio" value="view1" id="view1" />
+                <label for="view1"></label>
+                <input ng-model="view" disabled="" class="with-gap" name="group1" type="radio" value="view2" id="view2" />
+                <label for="view2"></label>
+                <input ng-model="view" disabled="" class="with-gap" name="group1" type="radio" value="view3" id="view3" />
+                <label for="view3"></label>
+                <input ng-model="view" disabled="" class="with-gap" name="group1" type="radio" value="view4" id="view4" />
+                <label for="view4"></label>
+                <input ng-click="loadMap('view5')" ng-model="view" disabled="" class="with-gap" name="group1" type="radio" value="view5" id="view5" />
+                <label for="view5"></label>
+                <!-- <input ng-model="view" disabled="" class="with-gap" name="group1" type="radio" value="view6" id="view6" />
+                <label for="view6"></label>
+                <input ng-model="view" disabled="" class="with-gap" name="group1" type="radio" value="view7" id="view7" />
+                <label for="view7"></label> -->
+
+            </form>
+        </div>
+    </div>
+</div>

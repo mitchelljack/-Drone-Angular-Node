@@ -1,0 +1,31 @@
+{
+  "name": "NodejsStarterApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "body-parser": "*",
+    "braintree": "*",
+    "braintree-angular": "*",
+    "braintree-web": "*",
+    "cfenv": "1.0.x",
+    "cloudant": "*",
+    "cloudinary": "*",
+    "crypto": "*",
+    "express": "4.13.x",
+    "express-session": "*",
+    "formidable": "*",
+    "fs": "0.0.1-security",
+    "ibmiotf": "*",
+    "newrelic": "^1.35.1",
+    "request": "*",
+    "sendgrid": "*",
+    "socket.io": "*"
+  },
+  "repository": {},
+  "engines": {
+    "node": "4.x"
+  }
+}

@@ -1,0 +1,341 @@
+<html ng-app="demo">
+
+<head>
+    <title>Precision Autonomy</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <!-- <script type="text/javascript" src = "js/app.js"></script> -->
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.0/angular-route.min.js'></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript" src="js/inventrycontroller.js"></script>
+    <script type="text/javascript" src="js/homecontroller.js"></script>
+    <script type="text/javascript" src="js/insuredhomecontroller.js"></script>
+    <script type="text/javascript" src="js/profilecontroller.js"></script>
+    <script type="text/javascript" src="js/createflightcontroller.js"></script>
+    <script type="text/javascript" src="js/createjobcontroller.js"></script>
+    <script type="text/javascript" src="js/jobcontroller.js"></script>
+    <script type="text/javascript" src="js/jobmapcontroller.js"></script>
+    <script type="text/javascript" src="js/subjobcontroller.js"></script>
+    <script type="text/javascript" src="js/subjobmapcontroller.js"></script>
+    <script type="text/javascript" src="js/pastcontroller.js"></script>
+    <script type="text/javascript" src="js/subsubjobcontroller.js"></script>
+    <script type="text/javascript" src="js/subpastcontroller.js"></script>
+    <script type="text/javascript" src="js/subsubpastcontroller.js"></script>
+    <script type="text/javascript" src="js/pastmapcontroller.js"></script>
+    <script type="text/javascript" src="js/subpastmapcontroller.js"></script>
+    <script type="text/javascript" src="js/createuav.js"></script>
+    <script type="text/javascript" src="js/createpurplebox.js"></script>
+    <script type="text/javascript" src="js/createoperator.js"></script>
+    <script type="text/javascript" src="js/createpilotcontroller.js"></script>
+    <script type="text/javascript" src="js/donecontroller.js"></script>
+    <script type="text/javascript" src="js/createcustomercontroller.js"></script>
+    <script type="text/javascript" src="js/highcharts-ng.min.js"></script>
+    <script type="text/javascript" src="js/createpayloadcontroller.js"></script>
+    <script type="text/javascript" src="js/Cesium/Cesium.js"></script>
+    <script type="text/javascript" src="js/lib/braintree.js"></script>
+    <script type="text/javascript" src="js/rangeslider.min.js"></script>
+    <script type="text/javascript" src="js/jquery.materialize-autocomplete.js"></script>
+    <script type="text/javascript" src="js/nouislider.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+    <script src="js/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="js/ng-img-crop.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/icons.css">
+    <link rel="stylesheet" type="text/css" href="css/ng-img-crop.css">
+    <link rel="stylesheet" type="text/css" href="css/nouislider.css">
+    <script type="text/javascript" src="js/nouislider.min.js"></script>
+    <!-- <script type="text/javascript" src = "js/controller.js"></script> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="css/style.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, height=device-height ,initial-scale=1">
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe6galtm6BnVZE-8PfF7v8YtZzSeyO9S0&libraries=places"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            google.charts.load("current", {
+                packages: ["corechart"]
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="profileSidenav" class="profileSidenav z-depth-1">
+        <div style="background-image: url('images/imagebg.jpg');height:250px"> <i style="" onclick="closeNav()" class="material-icons white-text close-link">close</i>
+            <img id="myImage" src="images/profilepic3.jpg" style="background-color: #6D6D6D;border-radius:50%;width:120px;margin:20px">
+            <br>
+            <div style="color:white;font-size:18px;padding-left:10px;">
+                <div id="myName">Johnny Appleseed</div>
+                <div><span id="myEmail"></span> <i class="material-icons" style="margin-right:0px;">keyboard_arrow_down</i></div>
+
+            </div>
+        </div>
+        <!-- <a href="#"><i class="material-icons">query_builder</i> <span> Recent Activities</span></a> -->
+        <!-- <a href="#"><i class="icon-hotel"></i> My Company</a> -->
+        <br>
+        <a href="#/profile" onclick="closeNav()"><i class="icon-man-shape"></i> My Profile</a>
+        <!-- <a href="#"><i class="icon-icon"></i> My Team</a> -->
+        <a href="#"><i class="icon-document-of-news"></i> Templates</a>
+        <a href="#"><i class="icon-megaphone" aria-hidden="true"></i> Notifications</a>
+        <a href="https://precision-autonomy.helpshift.com"><i class="material-icons">forum</i> Feedback</a>
+        <a href="/users/logout"><i class="icon-cross-square-button"></i> Logout</a> </div>
+        <div id="notificationMenu" class="notification z-depth-2">
+            <div class="row">
+                <div class="col s6 m4 l2">
+                    <div style="width:30px;height:30px;border-radius:25px;background-color:#d8d8d8;margin:30px"> </div>
+                </div>
+                <div style="font-size:24;padding-top:25px;" class="col s6 m8 l2">Today</div>
+            </div>
+            <div style="margin:0% 20% 0% 20%">
+                <hr> </div>
+                <div class="row">
+                    <div class="col s4 m4 l3">
+                        <div class="container">
+                            <div style="border-radius:50%;background-color:#dcdcdc;padding:10px;display:inline-block;">
+                                <div style="border-radius:50%;background-color:#8b8989;padding:10px">
+                                    <div style="border-radius:50%;background-color:#4a4a4a;padding:10px"> <i style="color:#5cb9cd;font-size:48px;" class="material-icons">subtitles</i> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s8 m8 l9">
+                        <div style="font-size:20px;">OPERATOR <b>JOHNN SMITH</b>ADDED A <b>NEW MISSION</b> TO <b>JOB 0032</b> </div>
+                        <br>
+                        <button class="btn red">View Details</button>
+                    </div>
+                </div>
+                <div style="margin:0% 20% 0% 20%"><hr></div>
+                <div class="row">
+                    <div class="col s4 m4 l3">
+                        <div class="container">
+                            <div style="border-radius:50%;background-color:#dcdcdc;padding:10px;display:inline-block;">
+                                <div style="border-radius:50%;background-color:#8b8989;padding:10px">
+                                    <div style="border-radius:50%;background-color:#4a4a4a;padding:10px"> <i style="color:#e04b3b;font-size:48px;" class="material-icons">error_outline</i> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s8 m8 l9">
+                        <div style="font-size:20px;"><b>PARAMETER ALERT:</b>
+                            <br>PARAMETER XYX | FLIGHT F0094 </div>
+                            <br>
+                            <button class="btn red">View Details</button>
+                        </div>
+                    </div>
+
+                    <div style="margin:0% 20% 0% 20%"><hr></div>
+                    <div class="row">
+                        <div class="col s4 m4 l3">
+                            <div class="container">
+                                <div style="border-radius:50%;background-color:#dcdcdc;padding:10px;display:inline-block;">
+                                    <div style="border-radius:50%;background-color:#8b8989;padding:10px">
+                                        <div style="border-radius:50%;background-color:#4a4a4a;padding:10px"> <i style="color:#f5bf23;font-size:48px;" class="material-icons">warning</i> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col s8 m8 l9">
+                            <div style="font-size:20px;"><b>PARAMETER ALERT:</b>
+                                <br>PARAMETER XYX | FLIGHT F0094 </div>
+                                <br>
+                                <button class="btn red">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                    <nav id="side-nav" style="visibility:visible;" class="blur side-nav fixed z-depth-3">
+                        <ul>
+                            <li style="padding:7px 15px 10px 15px;height:63px;background-color:#F1573C;"><img style="width:100%;" src="images/logo2.png"></li>
+                            <li><a id="sideNavHome" href="#/home"><i class="fa fa-home" style="font-size:32px;margin-top:10px"></i></a></li>
+                            <li><a id="sideNavFlights" href="#/"><i class="material-icons">wifi_tethering</i></a></li>
+                            <li><a id="sideNavReplay" href="#/past"><i class="fa fa-film" style="font-size:32px;margin-top:10px"></i></a></li>
+                            <li><a id="sideNavProfile" href="#/profile"><i style="font-size:32px;margin-top:10px" class="fa fa-suitcase"></i></a></li>
+                            <li>
+                                <a id="linkResourceImg" href="#/inventory"> <img id="resourceImg" style="width:35px;padding-top:10px;" src="images/resources_gray.png"> </a>
+                            </li>
+                            <li id="profilePicture" style="">
+                                <a href="">
+                                    <img id="profileImg" src="images/manager2.png" style="background-color: #6D6D6D;border-radius:50%;width:80%;" onclick="profileImageClicked()">
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <script type="text/javascript">
+                        $('#linkResourceImg').on('mouseover', function () {
+                            $("#resourceImg").attr('src', 'images/resources_white2.png');
+                        });
+                        $('#linkResourceImg').on('mouseleave', function () {
+                            $("#resourceImg").attr('src', 'images/resources_gray.png');
+                        });
+                    </script>
+    <!-- <div class="sideNav" >
+    		<a href="#/home" style="height:75px;"><img style="width:100%;" src="icon.png"></a>
+    		<a href="#/home"><i class="material-icons">home</i></a>
+    	</div> -->
+        <div id="main" class="main blur" ng-view></div>
+        <div id="menuButtons">
+            <div onclick="addClicked()" class="waves-effect waves-light fixed-action-btn" style="position: fixed !important;bottom:1em;right:1em;z-index: 2;">
+                <a id="menuBtn" class="btn-floating btn-large red"> <i class="material-icons btn-menu">add</i> <i style="display:none;" class="material-icons btn-menu red-text">close</i> </a>
+            </div>
+            <div class="btn-menu white-text" style="border-radius: 2px;padding: 3px;background-color: #6C6C6C; position: fixed !important;display:none; bottom: 70px; right: 104px;font-size:12px"> +PURPLE BOX </div>
+            <div class="fixed-action-btn btn-menu" style="display:none; bottom: 22px; right: 124px;">
+                <a href="#/create-purplebox/false" onclick="addClicked()" class="btn-floating red"> <img style="width:28px;padding-top:9px;padding-left:9px;" src="images/pb2.png"> </a>
+            </div>
+            <div class="btn-menu white-text" style="border-radius: 2px;padding: 3px;background-color: #6C6C6C; position: fixed !important;display:none; bottom: 70px; right: 210px;font-size:12px"> +PAYLOAD </div>
+            <div class="fixed-action-btn btn-menu" style="display:none;bottom: 22px; right: 224px;">
+                <a href="#/create-payload/false" onclick="addClicked()" class="btn-floating  red"> <img style="width:28px;padding-top:10px;padding-left:8px;" src="images/dome2.png"> </a>
+            </div>
+            <div class="btn-menu white-text" style="border-radius: 2px;padding: 3px;background-color: #6C6C6C; position: fixed !important;display:none; bottom: 70px; right: 320px;font-size:12px"> +UAVs </div>
+            <div class="fixed-action-btn btn-menu" style="display:none;bottom: 22px; right: 324px;">
+                <a href="#/create-uav/false" onclick="addClicked()" class="btn-floating  red"> <img style="width:32px;padding-top:6px;padding-left:6px;" src="images/drone2.png"> </a>
+            </div>
+            <div class="btn-menu-pilot-options white-text" style="border-radius: 2px;padding: 3px;background-color: #6C6C6C; position: fixed !important;display:none; bottom: 70px; right: 420px;font-size:12px"> +ROLE </div>
+            <div class="fixed-action-btn btn-menu-pilot-options" style="display:none; bottom: 22px; right: 424px;">
+                <a onclick="addClicked()" href="#/create-operator/false" class="btn-floating  red"> <img style="width:30px;padding-top:7px;padding-left:8px;" src="images/manager2.png"> </a>
+            </div>
+            <div class="btn-menu-pilot-options white-text" style="border-radius: 2px;padding: 3px;background-color: #6C6C6C; position: fixed !important;display:none; bottom: 70px; right: 510px;font-size:12px"> +INSURER </div>
+            <div class="fixed-action-btn btn-menu-pilot-options" style="display:none;bottom: 22px; right: 524px;">
+                <a onclick = "comingSoon()" class="btn-floating  red">
+                    <!-- <img style="width:28px;padding-top:5px;padding-left:8px;" src="images/manager.png"> --><i class="fa fa-umbrella" aria-hidden="true"></i> </a>
+            </div>
+            <!--<div class="btn-menu-pilot-options white-text" style="border-radius: 2px;padding: 3px;background-color: #6C6C6C; position: fixed !important;display:none; bottom: 152px; right: 82px;font-size:12px"> +FLIGHT </div>
+            <div class="fixed-action-btn btn-menu-pilot-options" style="display:none;bottom: 145px; right: 22px;">
+                <a href="#/create-flight/false" onclick="addClicked()" class="btn-floating red"> <img style="width:28px;padding-top:9px;padding-left:9px;" src="images/flight2.png"> </a>
+            </div>
+            <div class="btn-menu-pilot-options white-text" style="border-radius: 2px;padding: 3px;background-color: #6C6C6C; position: fixed !important;display:none; bottom: 252px; right: 82px;font-size:12px"> +GROUPS </div>
+            <div class="fixed-action-btn btn-menu-pilot-options" style="display:none;bottom: 245px; right: 22px;">
+                <a onclick="comingSoon()" class="btn-floating  red"> <img style="width:28px;padding-top:9px;padding-left:9px;" src="images/outline2.png"> </a>
+            </div>-->
+            <div class="btn-menu-pilot-options white-text" style="border-radius: 2px;padding: 3px;background-color: #6C6C6C; position: fixed !important;display:none; bottom: 152px; right: 82px;font-size:12px"> +Missions </div>
+            <div class="fixed-action-btn btn-menu-pilot-options" style="display:none;bottom: 145px; right: 22px;">
+                <a href="#/create-job/false" onclick="addClicked()" class="btn-floating  red"> <img style="width:28px;padding-top:10px;padding-left:9px;" src="images/list2.png"> </a>
+            </div>
+            <div class="btn-menu-pilot-options btn-menu-pilot-options-line" style="width:524px;position:fixed;bottom:40px;right:1em;border-top:1px solid #111111;display:none"></div>
+            <div class="btn-menu-pilot-options" style="height:124px;position:fixed;bottom:40px;right:35px;border-left:1px solid #111111;display:none">.</div>
+        </div>
+            <script type="text/javascript">
+                showFilterAreaClicked = function () {
+                    $("#filterAreaButton").toggleClass("sideNavSelected");
+                    $("#searchAreaCard").slideToggle();
+                };
+                var notificationOpen = false;
+                notificationClicked = function () {
+                    if (notificationOpen == false) {
+                        document.getElementById("notificationMenu").style.width = "600px";
+                        document.getElementById("mainContent").style.opacity = "0.2";
+                        notificationOpen = true;
+                    }
+                    else {
+                        document.getElementById("notificationMenu").style.width = "0";
+                        document.getElementById("mainContent").style.opacity = "1";
+                        notificationOpen = false;
+                    }
+                    $("#notificationButton").toggleClass("sideNavSelected");
+                };
+                $(document).ready(function () {
+
+            // $(".button-collapse").sideNav();
+            // // $('.slider').slider({full_width: true});
+            // $('.slider').slider({height:300});
+            // var width = $(window).width();
+            // if(width<=600)
+            // {
+            // 	$("#live").height(width*1.25 + 30);
+            // 	$("#flights").height(width*1.25);
+            // }
+            //       $("#plannedCircle").height($("#plannedCircle").width());
+            //       $("#inflightCircle").height($("#inflightCircle").width());
+            //       $("#alerts").height($("#alerts").width());
+            //       $("#warnings").height($("#warnings").width());
+            //       $("#normal").height($("#normal").width());
+            //--------------------------------------
+        });
+                var pilot_flag = false
+                function addClicked() {
+                    $(".btn-menu").fadeToggle("slow");
+                    $("#menuBtn").toggleClass("white");
+                    $("#menuBtn").toggleClass("red-text");
+                    $('.blur').toggleClass("blurredElement");
+                    if(pilot_flag) {
+                        $(".btn-menu-pilot-options-line").width('330px');
+                        $(".btn-menu-pilot-options-line").fadeToggle("slow");
+                    }
+                    else {
+                      $(".btn-menu-pilot-options-line").width('524px');
+                      $(".btn-menu-pilot-options").fadeToggle("slow");
+                    }
+                }
+                (function ($) {
+                    $.each(['show', 'hide'], function (i, ev) {
+                        var el = $.fn[ev];
+                        $.fn[ev] = function () {
+                            this.trigger(ev);
+                            return el.apply(this, arguments);
+                        };
+                    });
+                })(jQuery);
+
+                function showed() {
+                    $("#createJobMapDiv").css("padding", "5");
+                }
+
+                function profileImageClicked() {
+                    document.getElementById("profileSidenav").style.width = "320px";
+                    document.getElementById("main").style.marginLeft = "200px";
+                    document.getElementById("main").style.opacity = "0.2";
+                }
+
+                function closeNav() {
+                    document.getElementById("profileSidenav").style.width = "0";
+                    document.getElementById("main").style.marginLeft = "0";
+                    document.getElementById("main").style.opacity = "1";
+                }
+                $.get('users/profile',function(data){
+                    if(data!='error'){
+                        $("#myName").html(data.firstname + " " + data.lastname);
+                        $("#myEmail").html(data.email);
+                        $("#myImage,#profileImg").attr("src", data.croppedDataUrl);
+                        if(data.operator=="Pilot in Charge"){
+                            pilot_flag = true;
+                        }
+
+                        if(data.operator=="Insured Operator") {
+                          $("#sideNavHome").prop("href","#/insured-home")
+                        }
+                    }
+                });
+                function comingSoon(){
+                    $('#comingSoon').openModal();
+                    $(".btn-menu").fadeToggle("slow");
+                    $("#menuBtn").toggleClass("white");
+                    $("#menuBtn").toggleClass("red-text");
+                    $('.blur').toggleClass("blurredElement");
+
+                }
+
+
+            </script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.9/angular-materialize.min.js"></script>
+
+            <!-- Modal Structure -->
+            <div id="comingSoon" class="modal center">
+                <div class="modal-content">
+                    <h4>Coming Soon</h4>
+                    <p>This feature will be added soon</p>
+                </div>
+                <div class="modal-footer">
+                    <a onclick="'#comingSoon.closeModal()'" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                </div>
+            </div>
+
+
+
+        </body>
+
+        </html>

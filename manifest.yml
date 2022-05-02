@@ -1,0 +1,38 @@
+#------------------development--------------------
+applications:
+- path: .
+  memory: 2048M
+  domain: mybluemix.net
+  instances: 1
+  name: development-precision-autonomy
+  host: development-precision-autonomy
+  disk_quota: 1024M
+#------------------staging--------------------
+# applications:
+# - path: .
+#   memory: 2048M
+#   instances: 1
+#   domain: mybluemix.net
+#   name: staging-precision-autonomy
+#   host: staging-precision-autonomy
+#   disk_quota: 1024M
+
+# ------------------production--------------------
+# applications:
+# - path: .
+#   memory: 2048M
+#   instances: 1
+#   domain: mybluemix.net
+#   name: precision-autonomy
+#   host: precision-autonomy
+#   disk_quota: 1024M
+
+#------------------production - Sydney --------------------
+# applications:
+# - path: .
+#   memory: 2048M
+#   instances: 1
+#   domain: au-syd.mybluemix.net
+#   name: precision-autonomy
+#   host: precision-autonomy
+#   disk_quota: 1024M

@@ -1,0 +1,24 @@
+{
+  "droneDb": {
+"username": "f1f92792-bfef-4997-90f2-246fad466020-bluemix",
+    "password": "46811ef80fdb767890c1ba2db47d66f0671cd1bd35901b2b7187dbaeeb402570",
+    "host": "f1f92792-bfef-4997-90f2-246fad466020-bluemix.cloudant.com",
+    "port": 443,
+    "url": "https://f1f92792-bfef-4997-90f2-246fad466020-bluemix:46811ef80fdb767890c1ba2db47d66f0671cd1bd35901b2b7187dbaeeb402570@f1f92792-bfef-4997-90f2-246fad466020-bluemix.cloudant.com"
+  },
+  "iotDb": {
+    "url": "https://43a28c14-fd03-46d8-a336-e9c3d95c28cc-bluemix:e5e65c5b698844e7539e0b608f36ab44737b41c00c614c364856123bf4698b80@43a28c14-fd03-46d8-a336-e9c3d95c28cc-bluemix.cloudant.com",
+    "username": "43a28c14-fd03-46d8-a336-e9c3d95c28cc-bluemix",
+    "password": "e5e65c5b698844e7539e0b608f36ab44737b41c00c614c364856123bf4698b80"
+  },
+  "iotService": {
+      "iotCredentialsIdentifier": "a2g6k39sl6r5",
+      "mqtt_host": "plh376.messaging.internetofthings.ibmcloud.com",
+      "mqtt_u_port": 1883,
+      "mqtt_s_port": 8883,
+      "http_host": "plh376.internetofthings.ibmcloud.com",
+      "org": "plh376",
+      "apiKey": "a-plh376-ftyrphsihy",
+      "apiToken": "oXh_C8N7gcN-MXFd6b"
+    }
+}

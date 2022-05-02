@@ -1,0 +1,303 @@
+<div class="row">
+    <div class="col l12 m12 s12">
+        <div class="card" style="margin:15 20 0 20">
+            <div style="background-color:#4A4A4A;">
+                <div class="row">
+                    <div class="col s12 m12 l4"> <a class="btn red" style="margin-top:20px" href="#/create-customer/create-operator">Add New Company</a> </div>
+                    <div class="col s12 m12 l4">
+                        <h3 class="center white-text">{{title}}
+
+                        </h3> </div>
+                    <div class="col s12 m12 l4">
+                        <a href="#/inventory" style="display:inline-block;float:right;width:2.92rem;height:2.92rem;background-color:white;border-radius:50%;color:black;margin-right:15px;margin-top:20px"> <i style="padding:10 0 0 10" class="material-icons">close</i> </a>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="view == 'view1'">
+                <div class="row" style="padding:15 10 15 10">
+                    <div class="col s12 m12 l12">
+                        <label style="font-size:24px" class="red-text">Select existing pilots company below or add new company</label>
+                        <div class="input-field">
+                            <input ng-model="search" placeholder="Search for Company by Name | Job Name | Flight Name | Pilot Name | UAV" id="first_name" type="text" class="validate"> </div>
+                    </div>
+                </div>
+                <div style="padding:0 20 15 20; max-height:400px;overflow:auto">
+                    <table  class="bordered striped centered responsive-table inventoryTable">
+                        <thead style="background-color:#4A4A4A;">
+                            <tr>
+                                <th>Company Name</th>
+                                <th>Primary Job Type</th>
+                                <th>Status</th>
+                                <th>Jobs</th>
+                                <th>Flights</th>
+                                <th>Pilots</th>
+                                <th>UAVs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-click="openView2(company.company)" ng-repeat="company in companies | filter:{$:search}">
+                                <td>{{company.company}}</td>
+                                <td>{{company.jobType}}</td>
+                                <td>{{company.status}}</td>
+                                <td>{{company.jobs}}</td>
+                                <td>{{company.flights}}</td>
+                                <td>{{company.pilots}}</td>
+                                <td>{{company.uavs}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div ng-show="view == 'view2'">
+                <form name="form2" novalidate>
+                    <div class="row">
+                        <div class="col s12 m4 l5">.</div>
+                        <div class="col s12 m4 l2">
+                            <div ng-hide="picFile!=null" ngf-select ng-model="picFile" accept="image/*" id="getWidthOperator" ng-class="eid=='false' ? 'uav-empty-image' : 'uav-image'">
+                                <img style="margin:10% 0% 10% 0%;width:100%;" ng-src="{{formInfo.croppedDataUrl}}" ng-show="eid!='false'">
+                                <img style="margin:10% 0% 10% 0%;width:100%;" src="images/icons_2/user-male-silhouette.svg" ng-show="eid=='false'">
+                            </div>
+                            <div ng-hide="picFile==null" ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+                                <img-crop style="height:300px;" image="picFile  | ngfDataUrl" result-image="formInfo.croppedDataUrl" ng-init="formInfo.croppedDataUrl=''"> </img-crop>
+                            </div>
+                            <!-- <div ng-hide="picFile!=null" ngf-select ng-model="picFile" accept="image/*" id="getWidthOperator" style="padding: 20%;background-color:#6D6D6D;border-radius:50%;margin:10%;">
+                              <img style="color:white;width:100%;" src="images/icons_2/user-male-silhouette.svg">
+                            </div>
+                            <div ng-hide="picFile==null" ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+                                <img-crop on-change="profileChanged()" style="height:300px;" image="picFile  | ngfDataUrl" result-image="formInfo.croppedDataUrl" ng-init="formInfo.croppedDataUrl=''"> </img-crop>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">NAME*</label>
+                                <div class="input-field">
+                                    <input required name="isValid" ng-model="formInfo.name" type="text"> </div>
+                            </div>
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">OPERATOR ROLE*</label>
+                                <div input-field class="scroll-dropdown">
+                                    <div class="col s10 m10 l11">
+                                        <select ng-if='isAdmin' ng-change = "addOptionClicked('operator')" ng-model="formInfo.operator" material-select required watch>
+                                            <option value="link">+Add Operator Role</option>
+                                            <option ng-repeat="role in roles">{{role}}</option>
+                                        </select>
+                                    </div>
+                                    <select ng-if="!isAdmin" ng-change = "addOptionClicked('operator')" ng-model="formInfo.operator" material-select required>
+                                        <option>Pilot in Charge</option>
+                                    </select>
+                                    <div ng-if="isAdmin" class="col s2 m2 l1"><a class="red-text waves-effect waves-light" ng-click = "openDelete('operator')"><i class="material-icons">delete</i></a></div>
+                                </div>
+                            </div>
+                            <div class="col s12 m6 l6"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="container">
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">JOB TYPE*</label>
+                                <div class="input-field scroll-dropdown">
+                                    <div class="col s10 m10 l11">
+                                        <select ng-show = "isAdmin" ng-change = "addOptionClicked('jobType')" ng-model="formInfo.jobType" material-select required watch>
+                                            <option value="link">+Add Job Type</option>
+                                            <option ng-repeat="type in jobTypes">{{type}}</option>
+                                        </select>
+                                    </div>
+                                    <select ng-show="!isAdmin"  ng-model="formInfo.jobType" material-select required watch>
+                                        <option ng-repeat="type in jobTypes">{{type}}</option>
+                                    </select>
+                                    <div ng-show="isAdmin" class="col s2 m2 l1"><a class="red-text waves-effect waves-light" ng-click = "openDelete('jobType')"><i class="material-icons">delete</i></a></div>
+                                </div>
+                            </div>
+
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">SET OPERATOR INITIAL PASSWORD*</label>
+                                <div class="input-field">
+                                    <input ng-disabled="eid!='false'" placeholder="Set New Password" ng-model="formInfo.password" type="text" name="" ng-required="eid=='false'"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="formInfo.operator=='Pilot in Charge'" class="row">
+                        <div class="container">
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">PILOT CALL SIGN</label>
+                                <div class="input-field">
+                                    <input placeholder="Enter Call Sign" ng-model="formInfo.callSign" type="text" name="input"> </div>
+                            </div>
+                            <div class="col s6 m3 l3">
+                                <label style="font-size:14px;" class="red-text">PILOT COST</label>
+                                <div class="input-field">
+                                    <input min="0" placeholder="Enter Cost" type="number" ng-model="formInfo.pilotCost"> </div>
+                            </div>
+
+                            <div  class="col s6 m3 l3">
+                                <label style="font-size:14px;" class="red-text">RATE</label>
+                                <div class="input-field scroll-dropdown">
+                                    <div class="col s10 m9 l10">
+                                        <select ng-show = "isAdmin" ng-change = "addOptionClicked('pilotRate')" ng-model="formInfo.pilotRate" material-select watch>
+                                            <option value="link">+Add Rate</option>
+                                            <option ng-repeat="rate in rates">{{rate}}</option>
+                                        </select>
+                                    </div>
+                                    <select ng-show = "!isAdmin" ng-change = "addOptionClicked('pilotRate')" ng-model="formInfo.pilotRate" material-select watch>
+                                        <option ng-repeat="rate in rates">{{rate}}</option>
+                                    </select>
+                                    <div ng-show="isAdmin" class="col s2 m3 l2"><a class="red-text waves-effect waves-light" ng-click = "openDelete('pilotRate')"><i class="material-icons">delete</i></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <button ng-class="{disabled : !form2.$valid }" ng-click="form2.$valid && changeView('view3')" class="btn btn-floating btn-large red white-text"> <i class="material-icons">arrow_forward</i> </button>
+                    </div>
+                </form>
+            </div>
+            <div ng-show="view == 'view3'">
+                <div class="container">
+                    <div class="row">
+                        <div style="margin-top:10%;" class="hide-on-small-only"></div>
+                    </div>
+                    <form ng-submit="addCertificate()">
+                        <table style="margin-top:20px;" class="striped">
+                            <thead style="background-color:#4A4A4A;margin-top:10%;color:white;">
+                                <tr>
+                                    <th style="border-radius:0px;">Certifications</th>
+                                    <th style="border-radius:0px;">Expiration Date</th>
+                                </tr>
+                            </thead>
+                            <tbody style="color:black;">
+                                <tr ng-repeat="certificate in formInfo.certificates">
+                                    <td>{{certificate.name}}</td>
+                                    <td>{{certificate.expiration}}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="input-field">
+                                            <input ng-model="cname" id="last_name" placeholder="Add Certificate" type="text" class="validate"> </div>
+                                    </td>
+                                    <td>
+                                        <div class="input-field">
+                                            <input input-date format="dd/mm/yyyy" ng-model="cdate" id="last_name" placeholder="Add Expiration Date" type="text" class="validate" min="{{minDate}}"> </div>
+                                        <input hidden="" type="submit" name=""> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    <div class="row center">
+                        <button ng-click="changeView('view2')" class="btn btn-floating btn-large grey white-text"> <i style="padding-left:15px" class="material-icons">arrow_backward</i> </button>
+                        <div style="width:20px;display:inline-block;"></div>
+                        <button ng-click="changeView('view4')" class="btn btn-floating btn-large red white-text"> <i class="material-icons">arrow_forward</i> </button>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="view== 'view4'">
+                <form name="form4">
+                    <div style="margin:10% 0 0 0" class="row"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="row">
+                                <div class="input-field col s12 m6 l6">
+                                    <input phone-input ng-model="formInfo.phoneNumber" id="numberInput" type="text" class="validate" >
+                                    <label class="red-text" style="font-size:14px;" for="numberInput" type="number">Phone Number</label>
+                                </div>
+                                <div class="input-field col s12 m6 l6">
+                                    <input ng-disabled="eid!='false'" ng-required="eid=='false'" ng-model="formInfo.email" id="emailInput" type="email" class="validate" required>
+                                    <label class="red-text" style="font-size:14px;" for="emailInput" type="email">Email*</label>
+                                </div>
+                                <br>
+                                <br> </div>
+                            <div ng-if="formInfo.operator=='Pilot in Charge'" class="row">
+                                <div   class="input-field col s12 m6 l6">
+                                    <input ng-model="formInfo.address" id="addressInput" type="text" class="validate" required>
+                                    <label class="red-text" style="font-size:14px;" for="addressInput" type="number">Street Address*</label>
+                                </div>
+                                <div   class="input-field col s12 m6 l6">
+                                    <input ng-model="formInfo.city" id="cityInput" type="text" class="validate" required>
+                                    <label class="red-text" style="font-size:14px;" for="cityInput" type="text">City*</label>
+                                </div>
+                                <br>
+                                <br> </div>
+                            <div ng-if="formInfo.operator=='Pilot in Charge'"  class="row">
+                                <div class="col s12 m6 l6">
+                                    <div input-field>
+                                        <select ng-model="formInfo.country" id="" material-select required watch>
+                                            <option>USA</option>
+                                            <option>Australia</option>
+                                        </select>
+                                        <label for="" style="font-size:14px;" class="red-text">COUNTRY*</label>
+                                    </div>
+                                </div>
+                                <div class="col s12 m3 l3">
+                                    <div input-field class="scroll-dropdown">
+                                        <select ng-model="formInfo.currentstate" id="" material-select required watch>
+                                            <option ng-repeat="territory in states[formInfo.country]">{{territory}}</option>
+                                        </select>
+                                        <label for="" style="font-size:14px;" class="red-text">STATE/TERRITORY*</label>
+                                    </div>
+                                </div>
+                                <div ng-show = "formInfo.country=='USA'" class="col s12 m3 l3">
+                                    <div class="input-field">
+                                        <input ng-model="formInfo.zipCode" id="zipInput" type="number" name="" ng-required="formInfo.country != 'USA'">
+                                        <label for="zipInput" style="font-size:14px;" class="red-text">ZIP CODE*</label>
+                                    </div>
+                                </div>
+                                <div ng-show="formInfo.country != 'USA'" class="col s12 m3 l3">
+                                    <div class="input-field">
+                                        <input ng-model="formInfo.zipCode" id="zipInput" type="number" name="" ng-required="formInfo.country == 'USA'">
+                                        <label for="zipInput" style="font-size:14px;" class="red-text">POSTAL CODE*</label>
+                                    </div>
+                                </div>
+                                <br>
+                                <br> </div>
+                        </div>
+                    </div>
+                    <div class="row center">
+                        <button ng-click="changeView('view3')" class="btn btn-floating btn-large grey white-text"> <i style="padding-left:15px" class="material-icons">arrow_backward</i> </button>
+                        <div style="width:20px;display:inline-block;"></div>
+                        <a ng-hide="loading" ng-class="{disabled : !form4.$valid }" ng-click="form4.$valid && submit()" class="btn btn-floating btn-large green white-text"> <i class="material-icons">done</i> </a>
+                    </div>
+                </form>
+            </div>
+            <form style="padding:20px 0 20px 0" class="row center">
+                <input disabled="" ng-model="view" class="with-gap" name="group1" type="radio" value="view1" id="view1" />
+                <label for="view1"></label>
+                <input disabled="" ng-model="view" class="with-gap" name="group1" type="radio" value="view2" id="view2" />
+                <label for="view2"></label>
+                <input disabled="" ng-model="view" class="with-gap" name="group1" type="radio" value="view3" id="view3" />
+                <label for="view3"></label>
+                <input disabled="" ng-model="view" class="with-gap" name="group1" type="radio" value="view4" id="view4" />
+                <label for="view4"></label>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="addModal" class="modal">
+    <div class="modal-content">
+        <h4>Add a New Option</h4>
+        <div input-field>
+        <input type="text" id="addValue" length="150">
+            <label>Option Value</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button ng-click = addClicked() class="btn red" style="margin:15px;">Add</button>
+        <button ng-click = "closeAddModal()" class="btn light-blue" style="margin:15px;">Cancel</button>
+    </div>
+</div>
+
+<!-- Modal Structure -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <h4>Confirmation</h4>
+        <p>Are you sure you want to delete this?</p>
+    </div>
+    <div class="modal-footer">
+        <button ng-click = "deleteClicked()" class="btn red" style="margin:15px;">Delete</button>
+        <button ng-click = "closeDeleteModal()" class="btn light-blue" style="margin:15px;">Cancel</button>
+    </div>
+</div>

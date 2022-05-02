@@ -1,0 +1,307 @@
+<div class="blur">
+    <nav>
+        <div class="nav-wrapper menu">
+            <ul style="max-height:64px" id="nav-mobile" class="right">
+                <!-- <li><a href=""><i class="fa fa-filter" style="font-size:28px;"></i></a></li> -->
+                <li id="notificationButton" onclick = "notificationClicked()"><a href=""><i class="material-icons">notifications</i></a></li>
+            </ul>
+            <div class="col s12">
+                <div style="padding-left:30px;">
+                    <a href="#/home" class="breadcrumb">INSURANCE DASHBOARD</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="mainContent" style="background-color: #F5F5F5;" class="row">
+        <div class="col s12 m6 l6">
+            <div class="card s12 m12 l12">
+                <div class="s12 m12 l12 center white-text">
+                    <h5 class="cardHead"><b><i class="material-icons">wifi_tethering</i> Claims</b></h5> </div>
+                <div class="slider" id="live">
+                    <span ng-click="previousSlide('#live')" class="nvgt"><i class="material-icons">navigate_before</i></span>
+                    <ul id="flights" class="slides white">
+                        <li>
+                          <div class="row"></div>
+                          <div class="row">
+                            <div class="col s4 l4 m4 white-text">&nbsp;</div>
+                            <div class="col s4 l4 m4 center">
+                                <h5 class="home_box_title">Overview</h5>
+                            </div>
+                            <div class="col s4 l4 m4"></div>
+                          </div>
+                          <div class="row" style="padding:0 15%">
+                            <div class="col s6 m6 l6">
+                                <div id="plannedCircl" style="background-color:#2B2B2C;" class="circle z-depth-2">
+                                    <div style="color:white;font-size:48px;margin-top:-60px">923</div>
+                                    <div style="margin-top:-10px;" class="center"> <span style="font-size:18px;color:white;">Insured UAVs</span> </div>
+                                </div>
+                            </div>
+                            <div class="col s4 m4 l4" style="margin-top:8%;">
+                                <div id="inflightCircl" style="background-color:#7C7C7C" class="circle z-depth-2">
+                                    <div style="color:white;font-size:38px;margin-top:-40px">32</div>
+                                    <div style="margin-top:-8px;" class="center"><span style="font-size:14px;color:white;">Claims</span> </div>
+                                </div>
+                            </div>
+                            <div class="col s2 m2 l2" style="margin-top:17%;">
+                                <div id="inflightCircl" style="background-color:#ADADAD" class="circle z-depth-2">
+                                    <div style="color:white;font-size:20px;margin-top:-20px">21</div>
+                                    <div style="margin-top:-5px;" class="center"><span style="font-size:10px;color:white;">Paid</span> </div>
+                                </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                            <div class="row">
+                                <div class="col s6 m6 l6">
+                                    <div class="row"></div>
+                                    <div class="row">
+                                        <div class="col s12 l12 m12 center">
+                                            <h6 class="home_box_title">UAV FLIGHTS</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="center">
+                                        <h1><b>12,922</b></h1>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="center">
+                                        <h5>21% <i style="color:#7FD323" class="material-icons">call_made</i></h5>
+                                    </div>
+                                </div>
+                                <div class="col s6 m6 l6">
+                                    <div class="row"></div>
+                                    <div class="row">
+                                        <div class="col s12 l12 m12 center">
+                                            <h6 class="home_box_title">CLAIMS AS A % OF FLIGHTS</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="center">
+                                        <h1><b>4%</b></h1>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="center">
+                                        <h5>11% <i style="color:#EA5039" class="material-icons">call_received</i></h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                          <div class="row">
+                              <div class="col s6 m6 l6">
+                                  <div class="row"></div>
+                                  <div class="row">
+                                      <div class="col s12 l12 m12 center">
+                                          <h6 class="home_box_title">OPERATORS|NO CLAIMS</h6>
+                                      </div>
+                                  </div>
+                                  <div class="row"></div>
+                                  <div class="center">
+                                      <h1><b>178</b></h1>
+                                  </div>
+                                  <div class="row"></div>
+                                  <div class="center">
+                                      <h5>21% <i style="color:#7FD323" class="material-icons">call_made</i></h5>
+                                  </div>
+                              </div>
+                              <div class="col s6 m6 l6">
+                                  <div class="row"></div>
+                                  <div class="row">
+                                      <div class="col s12 l12 m12 center">
+                                          <h6 class="home_box_title">OPERATORS|1 + CLAIMS</h6>
+                                      </div>
+                                  </div>
+                                  <div class="row"></div>
+                                  <div class="center">
+                                      <h1><b>41</b></h1>
+                                  </div>
+                                  <div class="row"></div>
+                                  <div class="center">
+                                      <h5>11% <i style="color:#EA5039" class="material-icons">call_received</i></h5>
+                                  </div>
+                              </div>
+                          </div>
+                        </li>
+                        <li>
+                            <div class="row"></div>
+                            <div class="row">
+                                <div class="col s3 l3 m3 center">&nbsp;</div>
+                                <div class="col s6 l6 m6 center">
+                                    <h6 class="home_box_title">UAV TYPE</h6>
+                                </div>
+                                <div class="col s3 l3 m3 center"></div>
+                            </div>
+                            <div class="row">
+                                <div id="buisness30"></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <span ng-click="nextSlide('#live')" style="right:0" class="nvgt"><i class="material-icons">navigate_next</i></span>
+                </div>
+                <br> </div>
+        </div>
+        <div class="col s12 m6 l6">
+            <div class="card s12 m12 l12">
+                <div class="s12 m12 l12 center white-text">
+                    <h5 class="cardHead"><b><i class="material-icons">wifi_tethering</i> Underwriting</b></h5> </div>
+                <div class="slider" id = "resourceSlider">
+                    <span ng-click="previousSlide('#resourceSlider')" class="nvgt"><i class="material-icons">navigate_before</i></span>
+                    <ul class="slides white">
+                        <li>
+                            <div class="row">
+                                <div class="col s6 m6 l6">
+                                    <div class="row"></div>
+                                    <div class="row">
+                                        <div class="col s12 l12 m12 center">
+                                            <h6 class="home_box_title">NEW UAVs WRITTEN</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="center">
+                                        <h1><b>78</b></h1>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="center">
+                                        <h5>6% <i style="color:#7FD323" class="material-icons">call_made</i></h5>
+                                    </div>
+                                </div>
+                                <div class="col s6 m6 l6">
+                                    <div class="row"></div>
+                                    <div class="row">
+                                        <div class="col s12 l12 m12 center">
+                                            <h6 class="home_box_title">NUMBER OF FLIGHTS/UAV</h6>
+                                        </div>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="center">
+                                        <h1><b>14</b></h1>
+                                    </div>
+                                    <div class="row"></div>
+                                    <div class="center">
+                                        <h5>2% <i style="color:#EA5039" class="material-icons">call_received</i></h5> </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row"></div>
+                            <div class="col s3 l3 m3 white-text">&nbsp;</div>
+                            <div class="col s6 l6 m6 center">
+                                <h5 class="home_box_title">IN FLIGHT ALERTS</h5> </div>
+                            <div class="col s3 l3 m3 white-text">&nbsp;</div>
+                            <div class="row">
+                                <div class="col s12 m4 l4 pstatus">
+                                    <div id="alert" class="z-depth-2 circle" style="background-color:#EA5E50">
+                                        <div style="color:white;font-size:38px;margin-top:-25px">32</div>
+                                    </div>
+                                    <div class="">
+                                        <div class="row"> <i style="padding:0px; text-align:right" class="material-icons red-text col m6 l6 s6">error_outline</i>
+                                            <div style="padding:0px;padding-top: 3px; text-align:left" class="col m6 l6 s6">Alerts</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col s12 m4 l4 pstatus">
+                                    <div id="warning" class="z-depth-2 circle" style="background-color:#DDBC2B">
+                                        <div style="color:white;font-size:38px;margin-top:-25px">254</div>
+                                    </div>
+                                    <div class="center"><i style="color:#DDBC2B;" class="fa fa-exclamation-triangle" aria-hidden="true"> Warnings</i></div>
+                                </div>
+                                <div class="col s12 m4 l4 pstatus">
+                                    <div id="norml" class="z-depth-2 circle" style="background-color:#60A017">
+                                        <div style="color:white;font-size:38px;margin-top:-25px">478</div>
+                                    </div>
+                                    <div class="center"><i class="green-text fa fa-check-circle" aria-hidden="true"> Normal</i></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row"></div>
+                            <div class="row">
+                                <div class="col s2 l2 m2 white-text">&nbsp;</div>
+                                <div class="col s8 l8 m8 center">
+                                    <h5 class="home_box_title">FLIGHTS COMPLETED BY BROKER</h5> </div>
+                                <div class="col s2 l2 m2"></div>
+                            </div>
+                            <div class="row">
+                                <div style="padding: 0 30 0 30" id="flightsCompletedByType1"></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <span ng-click="nextSlide('#resourceSlider')" style="right:0" class="nvgt"><i class="material-icons">navigate_next</i></span>
+                </div>
+                <br> </div>
+        </div>
+        <div class="col s12 m6 l6">
+            <div class="card s12 m12 l12">
+                <div class="s12 m12 l12 center white-text">
+                    <h5 class="cardHead"><b><i class="fa fa-suitcase"></i> Reports</b></h5> </div>
+                <div class="slider" id = "reportSlider">
+                    <span ng-click="previousSlide('#reportSlider')" class="nvgt"><i class="material-icons">navigate_before</i></span>
+                    <ul class="slides white">
+                        <li>
+                            <div class="row"></div>
+                            <div class="row">
+                                <div class="col s3 l3 m3 center">&nbsp;</div>
+                                <div class="col s6 l6 m6 center">
+                                    <h6 class="home_box_title">OPERATOR CORE INDUSTRIES</h6>
+                                </div>
+                                <div class="col s3 l3 m3 center"></div>
+                            </div>
+                            <div class="row">
+                                <div id="buisness60"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="row"></div>
+                            <div class="row">
+                                <div class="col s3 m3 l3 white-text">&nbsp;</div>
+                                <div class="col s6 l6 m6 center">
+                                    <h5 class="home_box_title">CLAIMS RESOLUTION TIME'S</h5> </div>
+                                <div class="col s3 m3 l3 white-text">&nbsp;</div>
+                            </div>
+                            <div class="row center"> $<span style="font-size:64px">18,460</span> </div>
+                            <div class="row center">
+                                <h5>16% <i style="color:#7FD323" class="material-icons">call_made</i></h5> </div>
+                        </li>
+                        <li>
+                            <div class="row"></div>
+                            <div class="row">
+                                <div class="col s3 l3 m3 white-text">&nbsp;</div>
+                                <div class="col s6 l6 m6 center">
+                                    <h5 class="home_box_title">APPLICATIONS PROCESSED</h5> </div>
+                                <div class="col s3 l3 m3"></div>
+                            </div>
+                            <div class="row">
+                                <div id="container"></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <span ng-click="nextSlide('#reportSlider')" style="right:0" class="nvgt"><i class="material-icons">navigate_next</i></span>
+                </div>
+                <br> </div>
+        </div>
+        <div class="col s12 m6 l6">
+            <div class="card s12 m12 l12">
+                <div class="s12 m12 l12 center white-text">
+                    <h5 class="cardHead"><b><i class="fa fa-film" style="font-size:28px"></i> Past Flights</b></h5> </div>
+                <div class="slider" id = "pastFlightSlider">
+                    <span ng-click="previousSlide('#pastFlightSlider')" class="nvgt"><i class="material-icons">navigate_before</i></span>
+                    <ul class="slides white">
+                        <li>
+                            <div class="row"></div>
+                            <div class="row">
+                                <div class="col s2 l2 m2 white-text">&nbsp;</div>
+                                <div class="col s8 l8 m8 center">
+                                    <h5 class="home_box_title">FLIGHTS COMPLETED BY WEIGHT CLASS</h5> </div>
+                                <div class="col s2 l2 m2"></div>
+                            </div>
+                            <div class="row">
+                                <div style="padding: 0 30 0 30" id="flightsCompletedByType"></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <span ng-click="nextSlide('#pastFlightSlider')" style="right:0" class="nvgt"><i class="material-icons">navigate_next</i></span>
+                </div>
+                <br> </div>
+        </div>
+    </div>
+</div>

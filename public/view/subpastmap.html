@@ -1,0 +1,383 @@
+<div id="mySidenav" class="sidenav">
+	<div style="text-align:center;margin-top: -2px;" class="col s12 m12 l12">
+		<div style="background-color:#2b2b2c;color:#fff;font-size:24px;padding:15px" class="row">
+			<div ng-click = "closeNav()" class="col m1 l1 s1">
+				<i style="padding-top:5px;" class="material-icons flipIcon">reply</i>
+			</div>
+			<div class="col s10 m10 s10">Job Summary | {{id}}</div>
+			<div class="col m1 l1 s1">
+				<i style="padding-top:5px;" class="material-icons">edit</i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 m6 l3">
+				<div class="card">
+					<div class="sideNavDivHeader">JOB STATUS</div>
+					<div id="statusChart" class="sideNavDivContent"></div>
+				</div>
+			</div>
+			<div class="col s12 m6 l3">
+				<div class="card">
+					<div class="sideNavDivHeader">PARAMETER STATUS</div>
+					<div class="sideNavDivContent">
+						<i style="color:#e74c3c;font-size:150px;padding-top:25px;width:100%" class="material-icons">error_outline</i>
+						<div style="color:#e74c3c;font-size:38px">ALERT</div>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m6 l3">
+				<div class="card">
+					<div class="sideNavDivHeader">JOB TYPE</div>
+					<div class="sideNavDivContent">
+						<div style="font-size:38;color:#fff;padding-top:50px;">{{job.value.jobType}}</div>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m6 l3">
+				<div class="card">
+					<div class="sideNavDivHeader">TOTAL FLIGHTS</div>
+					<div class="sideNavDivContent">
+						<div style="margin-bottom:0px" class="row">
+							<div style="color:white;" class="col s6 m6 l6">
+								<h5>COMPLETED</h5>
+								<h3>{{completedFlights}}</h3>
+							</div>
+							<div class="col s6 m6 l6">.</div>
+						</div>
+						<div class="row">
+							<div class="col s6 m6 l6">.</div>
+							<div style="color:white;" class="col s6 m6 l6">
+								<h3>{{assignedFlights}}</h3>
+								<h5>ASSIGNED</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12 m6 l6">
+				<div class="card">
+					<div style="background-color:#4a4a4a;color:white;" class="sideNavDivHeader">ASSIGNED UAV(s)</div>
+					<div style="background-color:white;height:300px !important;" class="slider sideNavDivContent">
+						<ul class="slides">
+							<li ng-repeat = "Uavs in assignedUavs" style="background-color:white;">
+								<div class="row">
+									<div ng-repeat = "Uav in Uavs" class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" ng-src="{{Uav.image}}"><br>
+										<br>
+										<span><b>{{Uav.name}}</b></span>
+									</div>
+								</div>
+							</li>
+
+							<!-- <li style="background-color:white;">
+								<div class="row">
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/drone.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/drone.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/drone.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+								</div>
+							</li>
+
+							<li style="background-color:white;">
+								<div class="row">
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/drone.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/drone.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/drone.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+								</div>
+							</li> -->
+
+						</ul>
+					</div>
+					<br>
+				</div>
+			</div>
+			<div class="col s12 m6 l6">
+				<div class="card">
+					<div style="background-color:#4a4a4a;color:white;" class="sideNavDivHeader">ASSIGNED Pilots (s)</div>
+					<div style="background-color:white;height:300px !important;" class="slider sideNavDivContent">
+						<ul class="slides">
+							<li ng-repeat = "pilots in assignedPilots" style="background-color:white;">
+								<div class="row">
+									<div ng-repeat = "pilot in pilots" class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" ng-src="{{pilot.image}}"><br>
+										<br>
+										<span><b>{{pilot.name}}</b></span>
+									</div>
+
+								</div>
+							</li>
+
+							<!-- <li style="background-color:white;">
+								<div class="row">
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/profilepic3.jpg"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/profilepic3.jpg"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/profilepic3.jpg"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+								</div>
+							</li>
+
+							<li style="background-color:white;">
+								<div class="row">
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/profilepic3.jpg"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/profilepic3.jpg"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;width:80%;height:auto" src="images/profilepic3.jpg"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+								</div>
+							</li> -->
+
+						</ul>
+					</div>
+					<br>
+				</div>
+			</div>
+			<div class="col s12 m6 l6">
+				<div class="card">
+					<div style="background-color:#4a4a4a;color:white;" class="sideNavDivHeader">ASSIGNED PB(s)</div>
+					<div style="background-color:white;height:300px !important;" class="slider sideNavDivContent">
+						<ul class="slides">
+							<li ng-repeat = "PBs in assignedPBs" style="background-color:white;">
+								<div ng-repeat="PurpleBox in PBs" class="row">
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" ng-src="{{PurpleBox.image}}"><br>
+										<br>
+										<span><b>{{PurpleBox.name}}</b></span>
+									</div>
+
+								</div>
+							</li>
+							<!-- <li ng-repeat = "PBs in assignedPBs" style="background-color:white;">
+								<div class="row">
+									<div ng-repeat = "PB in PBs" class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" src="images/pb.gif"><br>
+										<br>
+										<span><b>{{PB.name}}</b></span>
+									</div>
+
+								</div>
+							</li>
+							<li ng-repeat = "PBs in assignedPBs" style="background-color:white;">
+								<div class="row">
+									<div ng-repeat = "PB in PBs" class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" src="images/pb.gif"><br>
+										<br>
+										<span><b>{{PB.name}}</b></span>
+									</div>
+
+								</div>
+							</li> -->
+							<!-- <li style="background-color:white;">
+								<div class="row">
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" src="images/pb.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" src="images/pb.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" src="images/pb.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+								</div>
+							</li>
+							<li style="background-color:white;">
+								<div class="row">
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" src="images/pb.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" src="images/pb.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" src="images/pb.gif"><br>
+										<br>
+										<span><b>John Doe</b></span>
+									</div>
+								</div>
+							</li> -->
+
+						</ul>
+					</div>
+					<br>
+				</div>
+			</div>
+
+			<div class="col s12 m6 l6">
+				<div class="card">
+					<div style="background-color:#4a4a4a;color:white;" class="sideNavDivHeader">ASSIGNED Payload(s)</div>
+					<div style="background-color:white;height:300px !important;" class="slider sideNavDivContent">
+						<ul class="slides">
+							<li ng-repeat = "payloads in assignedPayloads" style="background-color:white;">
+								<div ng-repeat="payload in payloads" class="row">
+									<div class="col s4 borderRight">
+										<br>
+										<img style="margin-top:10px;max-width:80%;height:auto" ng-src="{{payload.image}}"><br>
+										<br>
+										<span><b>{{payload.name}}</b></span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<br>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Use any element to open the sidenav -->
+
+<div id="mainArea">
+	<nav>
+		<div class="nav-wrapper menu">
+			<ul style="max-height:64px" id="nav-mobile" class="right">
+				<li><a href=""><i class="fa fa-filter" style="font-size:28px;"></i></a></li>
+				<li id="notificationButton" onclick = "notificationClicked()"><a href=""><i class="material-icons">notifications</i></a></li>
+			</ul>
+			<div class="col s12">
+				<div style="padding-left:30px;">
+					<a href="#/past-map" class="breadcrumb">Past Jobs</a>
+					<a href="#/past-map/{{id}}" class="breadcrumb">{{id}}</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div id="mainContent" class="row">
+		<div id="googleMap" style="height:90%" class="col s12 m12 l12">
+
+		</div>
+	</div>
+	<style type="text/css">
+		#customWindow{
+			position: fixed;
+			margin-top: -19px !important;
+			margin-left:-190px;
+			z-index: 10;
+			margin-top: 0px;
+		}
+
+	</style>
+	<div style="display:none">
+		<div id='customWindow'>
+			<div class='card' style='width:450px;'>
+				<div class='red' style='color:white;height:40px;border-radius:5px 5px 0px 0px;'>
+					<h6 class='center' style='padding-left:10px;padding-top:10px'>Auston-Energy-001</h6>
+				</div>
+				<div style='height:290px; overflow:hidden'>
+					<div class='row'>
+						<div class='col s6 m6 l6'>
+							<div style='overflow:hidden; height:200px;border-right:3px solid lightgrey;margin-top:10px' id='chart'></div>
+						</div>
+						<div class='col s6 m6 l6'>
+							<div class='col s12 m12 l12'>
+								<div style='border-bottom: 2px solid black;padding:5px;margin-top: 10px;text-align:center'>JOB TYPE</div>
+								<div style='margin-bottom:20px;;margin-top:20px;'><h6 class='center'><b>REAL ESTATE</b></h6></div>
+								<div style='border-bottom: 2px solid black;padding:5px;margin-top: 10px;text-align:center'>Planned Flights</div>
+								<div style='margin-bottom:20px;;margin-top:20px;'><h4 class='center'><b>77</b></h4></div>
+							</div>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col s3 m3 l3'>.</div>
+						<div class='col s6 m6 l6'><button class='btn red'>VIEW HIGHLIGHTS</button></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+<div class="fixed-action-btn" style="bottom: 90px; right: 27px;">
+	<a href="#/past/{{id}}" class="btn-floating  blue ">
+		<i class="material-icons white-text">description</i>
+	</a>
+</div>
+
+<div style="position:fixed;top: 64px; right: 0px;height:40px">
+	<a ng-click = "openNav()" style="height:65px;" class="btn btn-large black" href="">
+		<i class="material-icons">reply</i>
+		JOB SUMMARY
+	</a>
+</div>

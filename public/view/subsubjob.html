@@ -1,0 +1,285 @@
+/*<style>
+#mySidenav, #flightData {
+	height:auto;
+	margin-top:64px;
+}
+.sideNavDivContent {
+	background-color:transparent;
+	background-repeat: no-repeat;
+  background-position: center;
+}
+.card {
+	padding:10px;
+}
+.card label {
+	font-size:18px;
+}
+.card span {
+	font-size:18px;
+}
+</style>
+	<div id="mySidenav" class="sidenav">
+		<div style="text-align:center;" class="col s12 m12 l12">
+			<div style="background-color:#2b2b2c;color:#fff;padding:15px; margin-bottom:0px;" class="row">
+				<!-- <div ng-click = "closeNav()" class="col m1 l1 s1">
+					<i style="padding-top:5px; cursor:pointer;" class="material-icons flipIcon">reply</i>
+				</div> -->
+				<div class="col s12 m12 s12" style="font-size:24px;">Flight Summary | {{subid}}</div>
+				<!-- <div class="col m1 l1 s1">
+					<a ng-click="closeNav()" style="color:white;" href="#create-job/{{id}}"><i style="padding-top:5px;" class="material-icons">edit</i></a>
+				</div> -->
+			</div>
+			<div class="row" style="margin:0">
+				<div class="col s12 m6 l3" id="flightWidth">
+					<div class="card">
+						<div class="sideNavDivHeader">Pilot</div>
+						<div class="sideNavDivContent" ng-style="{'background-image':'url('+flight.assignedPilots.image+')'}"></div>
+						<div class="sideNavDivHeader">{{flight.assignedPilots.name}}</div>
+					</div>
+				</div>
+				<div class="col s12 m6 l3" id="flightWidth">
+					<div class="card">
+						<div class="sideNavDivHeader">UAV</div>
+						<div class="sideNavDivContent" ng-style="{'background-image':'url('+flight.assignedUavs[0].image+')'}"></div>
+						<div class="sideNavDivHeader">{{flight.assignedUavs[0].nickname}}</div>
+					</div>
+				</div>
+				<div class="col s12 m6 l3" id="flightWidth">
+					<div class="card">
+						<div class="sideNavDivHeader">PAYLOAD</div>
+						<div class="sideNavDivContent" ng-style="{'background-image':'url('+flight.assignedPayloads[0].image+')'}"></div>
+						<div class="sideNavDivHeader">{{flight.assignedPayloads[0].nickname}}</div>
+					</div>
+				</div>
+				<!-- <div class="col s12 m6 l3">
+					<div class="card">
+						<div class="sideNavDivHeader">PASS</div>
+						<div class="sideNavDivContent" ng-style="{'background-image':'url('+flight.assignedPBs.image+')'}"></div>
+						<div class="sideNavDivHeader">{{flight.assignedPBs.nickname}}</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	<div id="flightData" class="sidenav">
+		<div style="text-align:center;" class="col s12 m12 l12">
+			<div class="row" style="margin:0">
+				<div class="col s12 m12 l12">
+					<div class="card">
+						<div class="sideNavDivHeader">Temperature</div>
+						<label id="TEMPRATURE">0</label>&nbsp;<span>&deg</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="margin:0">
+				<div class="col s12 m12 l12">
+					<div class="card">
+						<div class="sideNavDivHeader">Humidity</div>
+						<label id="HUMIDITY">0</label>&nbsp;<span>%</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="margin:0">
+				<div class="col s12 m12 l12">
+					<div class="card">
+						<div class="sideNavDivHeader">UAV Battery</div>
+						<label id="BATTERY">0</label>&nbsp;<span>%</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="margin:0">
+				<div class="col s12 m12 l12">
+					<div class="card">
+						<div class="sideNavDivHeader">Pitch</div>
+						<label id="PITCH">0</label>&nbsp;<span>&deg</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="margin:0">
+				<div class="col s12 m12 l12">
+					<div class="card">
+						<div class="sideNavDivHeader">Role</div>
+						<label id="ROLL">0</label>&nbsp;<span>&deg</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="margin:0">
+				<div class="col s12 m12 l12">
+					<div class="card">
+						<div class="sideNavDivHeader">Yaw</div>
+						<label id="YAW">0</label>&nbsp;<span>&deg</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="margin:0">
+				<div class="col s12 m12 l12">
+					<div class="card">
+						<div class="sideNavDivHeader">Altitude</div>
+						<label id="ALTITUDE">0</label>&nbsp;<span>m</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="position:absolute; bottom:10; z-index:1; margin-left:60; color:green">
+		<div class="col s8" style="text-align:left;">
+			<span style="font-size:14; font-weight:bold;" id="dateFlight"></span>
+		</div>
+		<div class="col s8" style="text-align:left;">
+			<span style="font-size:14; font-weight:bold;">Take-off:</span>
+			<span style="font-size:14; font-weight:bold;" id="takeoff"></span>
+		</div>
+		<div class="col s8" style="text-align:left;">
+			<span style="font-size:14; font-weight:bold;">Land:</span>
+			<span style="font-size:14; font-weight:bold;" id="land"></span>
+		</div>
+  </div>
+	<!-- <div id="mainContent" class="row">
+
+		<div class="col s12 m12 l12 z-depth-1" style="padding:10px">
+			<div class="col s4 l4 m4">
+				<a href="" ng-click = "showGrids=!showGrids" ><i class="medium material-icons black-text">info_outline</i></a>
+			</div>
+			<div class="col s4 l4 m4" style="text-align:center;">
+					<img class="container" style="width:45%; padding-top:5px;" src="images/logo.png">
+			</div>
+			<div class="col s4 l4 m4">
+					<div class="col s8" style="padding-right: 20px;text-align:right;border-right:2px solid black">
+						<span style="font-size:18px">LATITUDE:</span><br>
+						<span class="green-text" style="font-size:14; font-weight:bold;" id="gps-lat"></span>
+					</div>
+					<div class="col s4" style="padding-left : 20px ">
+						<span style="font-size:18px">LONGITUDE:</span><br>
+						<span class="green-text" style="font-size:14; font-weight:bold;" id="gps-lng"></span>
+					</div>
+			</div>
+
+		</div> -->
+ <div id="mainArea">
+		<nav>
+			<div class="nav-wrapper menu">
+				<ul style="max-height:64px" id="nav-mobile" class="right">
+					<li><a href="" ng-click="flightData()"><i class="material-icons">settings_input_antenna</i></a></li>
+					<li id="notificationButton" onclick = "notificationClicked()"><a href=""><i class="material-icons">notifications</i></a></li>
+					<li><a href="" ng-click = "openNav()"><i class="material-icons">description</i></a></li>
+					<!-- <li><a href=""><i class="fa fa-filter" style="font-size:28px;"></i></a></li>
+					<li id="notificationButton" onclick = "notificationClicked()"><a href=""><i class="material-icons">notifications</i></a></li> -->
+				</ul>
+				<div class="col s12">
+					<div style="padding-left:30px;">
+						<!-- <a href="#/job" class="breadcrumb">Active Jobs</a> -->
+						<a href="#/job/{{id}}" class="breadcrumb">{{id}}</a>
+						<a href="#/job/{{id}}/{{subid}}" class="breadcrumb">{{subid}}</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="row">
+			<div ng-class="viewGrids()" style="padding-right: 0px;padding-left:0px;height:100%;margin-right:-2px">
+				<div ng-style = "fullScreen()" style="height:100%;" id="googleMap"></div>
+				<div id="graphArea" style="display:none;padding-right:0px"></div>
+				<div ng-show = "showGrids" id = "nonGraphArea" style="color:white;text-align:center;width:100%;background-color:#4a4a4a;padding:right:0px" class="row">
+					<div style="display: inline-block;border-right:2px solid lightgrey;margin-top:15px;margin-bottom:15px;width:19%">
+						<div style="font-size:18px;padding:10px">Flight Operator</div>
+						<div><img  style="border-radius: 50%;width:70%;max-width: 150px" ng-src="{{flight[0].value.operator.image}}"></div>
+						<div style="font-size:18px;padding:10px">{{flight[0].value.operator.name}}</div>
+					</div>
+					<div style="display: inline-block;border-right:2px solid lightgrey;margin-top:15px;margin-bottom:15px;width:19%">
+						<div style="font-size:18px;padding:10px">Pilot in Charge</div>
+						<div><img  style="border-radius: 50%;width:70%;max-width: 150px" ng-src="{{flight[0].value.assignedPilots.image}}"></div>
+						<div style="font-size:18px;padding:10px">{{flight[0].value.assignedPilots.name}}</div>
+					</div>
+					<div style="display: inline-block;border-right:2px solid lightgrey;margin-top:15px;margin-bottom:15px;width:19%">
+						<div style="font-size:18px;padding:10px">UAVs</div>
+						<div><img  style="border-radius: 50%;width:70%;max-width: 150px" ng-src="{{flight[0].value.assignedUavs[0].image}}"></div>
+						<div style="font-size:18px;padding:10px">{{flight[0].value.assignedUavs[0].name}}</div>
+					</div>
+					<div style="display: inline-block;border-right:2px solid lightgrey;margin-top:15px;margin-bottom:15px;width:19%">
+						<div style="font-size:18px;padding:10px">Payload</div>
+						<div><img  style="border-radius: 50%;width:70%;max-width: 150pxheight: auto;" ng-src="{{flight[0].value.assignedPayloads[0].image}}"></div>
+						<div style="font-size:18px;padding:10px">{{flight[0].value.assignedPayloads[0].name}}.</div>
+					</div>
+					<a href="" ng-click = "showGrids=!showGrids">
+						<div style="display: inline-block;margin-top:15px;margin-bottom:15px;width:19%;color:white">
+							<div style="font-size:18px;padding:10px">Purple Box</div>
+							<div><img  style="border-radius: 50%;width:70%;max-width: 150px" ng-src="{{flight[0].value.assignedPBs.image}}"></div>
+							<div style="font-size:18px;padding:10px">{{flight[0].value.assignedPBs.nickname}}</div>
+						</div>
+					</a>
+
+				</div>
+			</div>
+			<div ng-show = "showGrids" class="col s4 m4 l4" style="padding-left:0px;">
+				<div class="col s12 m12 l6 " style="padding:3px">
+					<button ng-class = "getClass(flight[0].value.airPressure,sensors.pressure)" id="AIR_PRESSURE" ng-click = "buttonClicked('AIR_PRESSURE')" style="height:200px;" class="col s12 btn toggleMe">
+						AIR PRESSURE <br>
+						<h2 style="display:inline-block;font-size: 2.5vw">0</h2>psi
+					</button>
+				</div>
+				<div class="col s12 m12 l6 " style="padding:3px">
+					<button ng-class = "getClass(flight[0].value.humidity,humidity)" id="HUMIDITY" ng-click = "buttonClicked('HUMIDITY')" style="height:200px;" class="col s12 btn toggleMe">
+						HUMIDITY <br>
+						<h2 style="display:inline-block;font-size: 2.5vw">0</h2>%
+					</button>
+				</div>
+				<div class="col s12 m12 l6 " style="padding:3px">
+					<button ng-class = "getClass(flight[0].value.altitude,altitude)" id="ALTITUDE" ng-click = "buttonClicked('ALTITUDE')" style="height:200px;" class="col s12 btn toggleMe">
+						ALTITUDE <br>
+						<h2 style="display:inline-block;font-size: 2.5vw">0</h2>m
+					</button>
+				</div>
+				<div class="col s12 m12 l6 " style="padding:3px">
+					<button ng-class = "getClass(flight[0].value.temparature,sensors.temprature)" id="TEMPRATURE" ng-click = "buttonClicked('TEMPRATURE')" style="height:200px;" class="col s12 btn toggleMe">
+						TEMPRATURE <br>
+						<h2 style="display:inline-block;font-size: 2.5vw">0</h2>&deg
+					</button>
+				</div>
+				<div class="col s12 m12 l6 " style="padding:3px">
+					<button ng-click = "buttonClicked('PITCH')" id="PITCH" style="height:200px;" class="col s12 btn toggleMe green">
+						PITCH <br>
+						<h2 style="display:inline-block;font-size: 2.5vw">0</h2>&deg
+					</button>
+				</div>
+				<div class="col s12 m12 l6 " style="padding:3px">
+					<button ng-click = "buttonClicked('ROLL')" id="ROLL" style="height:200px;" class="col s12 btn toggleMe green">
+						ROLL <br>
+						<h2 style="display:inline-block;font-size: 2.5vw">0</h2>&deg
+					</button>
+				</div>
+				<div class="col s12 m12 l6 " style="padding:3px">
+					<button ng-click = "buttonClicked('YAW')" id="YAW" style="height:200px;" class="col s12 btn toggleMe green">
+						YAW <br>
+						<h2 style="display:inline-block;font-size: 2.5vw">0</h2>&deg
+					</button>
+				</div>
+				<!-- <div class="col s12 m12 l6 " style="padding:3px">
+					<button ng-class = "getClass(flight[0].value.sound,sound_level)" id="SOUND" ng-click = "buttonClicked('SOUND')" style="height:200px;" class="col s12 btn toggleMe">
+						SOUND <br>
+						<h2 style="display:inline-block;font-size: 2.5vw">0</h2>db
+					</button>
+				</div> -->
+				<div class="col s12 m12 l6 " style="padding:3px">
+					<button ng-class = "getClass(flight[0].value.battery,battery_level)" id="BATTERY" ng-click = "buttonClicked('BATTERY')" style="height:200px;" class="col s12 btn toggleMe">
+						BATTERY <br>
+						<h2 style="display:inline-block;font-size: 2.5vw">0</h2>%
+					</button>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<div ng-if="loading" class="loading-wrapper">
+	<div class="loader"></div>
+	<p>Fetching Data...</p>
+</div>

@@ -1,0 +1,103 @@
+<div>
+	<nav>
+		<div class="nav-wrapper menu">
+			<ul style="max-height:64px" id="nav-mobile" class="right">
+				<li id="filterAreaButton" onclick="showFilterAreaClicked()"><a href="" ng-click="showFilterArea = !showFilterArea" ><i class="fa fa-filter" style="font-size:28px;"></i></a></li>
+				<li id="notificationButton" onclick = "notificationClicked()"><a href=""><i class="material-icons">notifications</i></a></li>
+			</ul>
+			<div class="col s12">
+				<div style="padding-left:30px;">
+					<a href="#/past" class="breadcrumb">Past Jobs</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="card" style="margin:0px;" id="searchAreaCard">
+		<form name="form1">
+					<div class="row container" style="width:90%;padding-bottom:20px">
+							<br>
+						<div class="col s12 m3 l3" style="border-right:1px solid rgba(0,0,0,0.87);">
+
+							<div class="input-field col s12 m12 l12">
+						<select placeholder="Job Type" name="job_type" ng-model="jobFilter" ng-change="updateFilter();">
+							<option value="" selected> Job Type</option>
+							<option ng-repeat="type in jobTypes | orderBy: 'type'">{{type}}</option>
+						</select>
+					</div>
+							<div class="input-field col s12 m12 l12">
+						<select placeholder="Job Status" name="job_status" ng-model="statusFilter" ng-change="updateFilter();" disabled>
+							<option value="" selected>Select Job Status</option>
+							<option value="Pending">Pending</option>
+							<option value="Complete">Complete</option>
+							<option value="Complete">FNOL</option>
+						</select>
+					</div>
+							</div>
+							<div class="col s12 m6 l6" style="border-right:1px solid rgba(0,0,0,0.87);">
+
+		          	<div class="input-field col s12 m12 l12 center-align" style="padding:0px; margin:0px;">
+									<div class="input-field col s6 m6 l6 center-align">
+										<i class="material-icons prefix" style="top:10px;">today</i>
+										<input type="text" input-date placeholder="Date From" name="dateFrom" ng-model="dateFrom" ng-change="updateFilter();">
+									</div>
+									<div class="input-field col s6 m6 l6 center-align">
+										<i class="material-icons prefix" style="top:10px;">today</i>
+										<input type="text" input-date placeholder="Date To" name="dateTo" ng-model="dateTo" ng-change="updateFilter();">
+									</div>
+	              		<!-- <span style="font-size:18px">Search<i class="material-icons prefix">search</i></span> -->
+	              </div>
+		          	<div class="input-field col s12 m12 l12">
+		            	<input id="search" type="text" placeholder="Job/Flight Name"name="search" ng-model="searchText" ng-change="updateFilter();">
+		           		<!-- <label for="search" class="">Search</label> -->
+		  					</div>
+		          	<!-- <div class="input-field col s12 m12 l12 center-align" style="margin-top:0px">
+
+	              		<h6>Job/Flight</h6>
+		  					</div> -->
+	            </div>
+						<div class="col s12 m3 l3" 	>
+
+							<div class="input-field col s12 m12 l12">
+						<select placeholder="Type" name="pilot" ng-model="pilotFilter" ng-change="updateFilter();">
+							<option value="" selected> Choose Pilot</option>
+							<option ng-repeat="pilot in Pilots">{{pilot}}</option>
+						</select>
+					</div>
+							<div class="input-field col s12 m12 l12">
+						<select placeholder="UAV Type" name="uav_type" ng-model="uavFilter" ng-change="updateFilter();">
+							<option value="" selected>UAV Type</option>
+							<option ng-repeat="uav in Uavs">{{uav}}</option>
+						</select>
+					</div>
+							</div>
+					</div>
+			</form>
+	</div>
+
+	<div id="mainContent" class="row">
+		<div ng-repeat="job in filterJobs | orderBy: 'name'" class="col s12 m6 l3" on-finish-render="ngRepeatFinished">
+			<div class="pad-left">
+				<div class="card">
+				<div style="color:white;height:40px;border-radius:0px;background-color:#278b04">
+						<h6 class="col s10 m10 l10" style="padding-left:10px;padding-top:5px">{{job.value.name}}</h6>
+						<!-- <div class="col l2 m2 s2" style="padding-top:7px;"><i class="material-icons">more_vert</i></div> -->
+					</div>
+					<a href="#/past/{{job.value.name}}">
+						<div style="height:250px; overflow:hidden">
+							<div id={{job.value.name}}></div>
+							<script type="text/javascript">
+
+							</script>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div class="fixed-action-btn" style="bottom: 90px; right: 27px;">
+	<a href="#/past-map" class="btn-floating  blue ">
+		<i class="material-icons white-text">map</i>
+	</a>
+</div>

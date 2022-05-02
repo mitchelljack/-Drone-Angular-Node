@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col l12 m12 s12">
+        <div class="card" style="margin:15 20 0 20">
+            <div style="background-color:#4A4A4A; padding:5px">
+                <h3 class="center white-text">ADD NEW COMPANY
+					<a href="#/inventory" style="display:inline-block;float:right;width:2.92rem;height:2.92rem;background-color:white;border-radius:50%;color:black;margin-right:15px">
+						<i style="padding-top:9px" class="material-icons">close</i>
+					</a>
+				</h3> </div>
+            <div ng-show="view == 'view1'">
+                <form name="form">
+                    <div class="row">
+                        <div class="col s12 m4 l5">.</div>
+                        <div class="col s12 m4 l2">
+                            <label ng-hide="companyPic!=null" ngf-select ng-model="companyPic" accept="image/*">
+                                <div style="padding: 0 10% 0 10%"> <img id="companyPicPlaceholder" style="border-radius:50%;width:100%;display:none" src=""> </div>
+                                <div id="getWidthCompany" style="margin:20px">
+                                    <div class="circle" style="background-color:#6D6D6D;">
+                                        <div style="margin-top:-50px;">
+                                            <h5>Add <br>Company <br>Logo</h5> </div>
+                                    </div>
+                                </div>
+                            </label>
+                            <div ng-hide="companyPic==null" ngf-drop ng-model="formInfo.companyPic" ngf-pattern="image/*" class="cropArea">
+                                <img-crop style="height:300px;" image="companyPic  | ngfDataUrl" result-image="formInfo.croppedCompanyLogo" ng-init="formInfo.croppedCompanyLogo=''"> </img-crop>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="container">
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">COMPANY NAME*</label>
+                                <div class="input-field">
+                                    <input required ng-model="formInfo.companyName" placeholder="Enter the Company Name" type="text" name=""> </div>
+                            </div>
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">WEBSITE</label>
+                                <div class="input-field">
+                                    <input ng-model="formInfo.companyWebsite" placeholder="Enter the Comapany Website" type="text" name=""> </div>
+                            </div>
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">STREET ADDRESS*</label>
+                                <div class="input-field">
+                                    <input required ng-model="formInfo.streetAdress" placeholder="Enter the Company Address" type="text" name=""> </div>
+                            </div>
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">CITY*</label>
+                                <div class="input-field">
+                                    <input required ng-model="formInfo.city" placeholder="Enter the Company City" type="text" name=""> </div>
+                            </div>
+                            <div class="col s12 m6 l6">
+                                <label style="font-size:14px;" class="red-text">COUNTRY*</label>
+                                <div class="input-field">
+                                    <select ng-model="formInfo.country" material-select required>
+                                        <option>USA</option>
+                                        <option>Australia</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col s12 m3 l3">
+                                <label style="font-size:14px;" class="red-text">STATE/TERRITORY*</label>
+                                <div class="input-field scroll-dropdown">
+                                    <select required ng-model="formInfo.state" material-select watch>
+                                        <option ng-repeat="territory in states[formInfo.country]">{{territory}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col s12 m3 l3">
+                                <label style="font-size:14px;" class="red-text">ZIP CODE*</label>
+                                <div class="input-field">
+                                    <input type="number" name="" required ng-model = "formInfo.zipCode"> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row center">
+                        <a ng-hide="loading" ng-class="{disabled:!form.$valid}" ng-click="form.$valid && submit()" class="btn btn-floating btn-large green white-text"> <i class="material-icons">done</i> </a>
+                        <br>
+                        <br> </div>
+                </form>
+            </div>
+            <!-- <form style="padding:20px 0 20px 0" class="row center">
+                    <input ng-model="view" class="with-gap" name="group1" type="radio" value="view1" id="view1" />
+                    <label for="view1"></label>
+
+                </form> -->
+        </div>
+    </div>
+</div>

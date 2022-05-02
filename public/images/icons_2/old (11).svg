@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Inventory" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="O012_Job_Status_Dashboard_FAB_Selected" transform="translate(-960.000000, -720.000000)" fill="#F1573C">
+            <g id="Action-Button-Selected">
+                <g transform="translate(939.000000, 699.000000)" id="Action-Button">
+                    <g>
+                        <polygon id="Shape" points="35 22.4 33.6 21 28 26.6 22.4 21 21 22.4 26.6 28 21 33.6 22.4 35 28 29.4 33.6 35 35 33.6 29.4 28"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

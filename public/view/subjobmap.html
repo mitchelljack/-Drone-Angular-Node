@@ -1,0 +1,173 @@
+
+<!-- Use any element to open the sidenav -->
+<style>
+#mySidenav, #flightData {
+	height:auto;
+	margin-top:64px;
+}
+.sideNavDivContent {
+	background-color:transparent;
+	background-repeat: no-repeat;
+  background-position: center;
+}
+.card {
+	padding:10px;
+}
+.card label {
+	font-size:18px;
+}
+.card span {
+	font-size:18px;
+}
+</style>
+<div id="mySidenav" class="sidenav">
+	<div style="text-align:center;" class="col s12 m12 l12">
+		<div style="background-color:#2b2b2c;color:#fff;padding:15px; margin-bottom:0px;" class="row">
+			<!-- <div ng-click = "closeNav()" class="col m1 l1 s1">
+				<i style="padding-top:5px; cursor:pointer;" class="material-icons flipIcon">reply</i>
+			</div> -->
+			<div class="col s12 m12 s12" style="font-size:24px;">Flight Summary | {{id}}</div>
+			<!-- <div class="col m1 l1 s1">
+				<a ng-click="closeNav()" style="color:white;" href="#create-job/{{id}}"><i style="padding-top:5px;" class="material-icons">edit</i></a>
+			</div> -->
+		</div>
+		<div class="row" style="margin:0">
+			<div class="col s12 m6 l3" id="flightWidth">
+				<div class="card">
+					<div class="sideNavDivHeader">Pilot</div>
+					<div class="sideNavDivContent" ng-style="{'background-image':'url('+flight.assignedPilots.image+')'}"></div>
+					<div class="sideNavDivHeader">{{flight.assignedPilots.name}}</div>
+				</div>
+			</div>
+			<div class="col s12 m6 l3" id="flightWidth">
+				<div class="card">
+					<div class="sideNavDivHeader">UAV</div>
+					<div class="sideNavDivContent" ng-style="{'background-image':'url('+flight.assignedUavs[0].image+')'}"></div>
+					<div class="sideNavDivHeader">{{flight.assignedUavs[0].nickname}}</div>
+				</div>
+			</div>
+			<div class="col s12 m6 l3" id="flightWidth">
+				<div class="card">
+					<div class="sideNavDivHeader">PAYLOAD</div>
+					<div class="sideNavDivContent" ng-style="{'background-image':'url('+flight.assignedPayloads[0].image+')'}"></div>
+					<div class="sideNavDivHeader">{{flight.assignedPayloads[0].nickname}}</div>
+				</div>
+			</div>
+			<!-- <div class="col s12 m6 l3">
+				<div class="card">
+					<div class="sideNavDivHeader">PASS</div>
+					<div class="sideNavDivContent" ng-style="{'background-image':'url('+flight.assignedPBs.image+')'}"></div>
+					<div class="sideNavDivHeader">{{flight.assignedPBs.nickname}}</div>
+				</div>
+			</div> -->
+		</div>
+	</div>
+</div>
+<div id="flightData" class="sidenav">
+	<div style="text-align:center;" class="col s12 m12 l12">
+		<div class="row" style="margin:0">
+			<div class="col s12 m12 l12">
+				<div class="card">
+					<div class="sideNavDivHeader">Temperature</div>
+					<label id="TEMPRATURE">0</label>&nbsp;<span>&deg</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin:0">
+			<div class="col s12 m12 l12">
+				<div class="card">
+					<div class="sideNavDivHeader">Humidity</div>
+					<label id="HUMIDITY">0</label>&nbsp;<span>%</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin:0">
+			<div class="col s12 m12 l12">
+				<div class="card">
+					<div class="sideNavDivHeader">UAV Battery</div>
+					<label id="BATTERY">0</label>&nbsp;<span>%</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin:0">
+			<div class="col s12 m12 l12">
+				<div class="card">
+					<div class="sideNavDivHeader">Pitch</div>
+					<label id="PITCH">0</label>&nbsp;<span>&deg</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin:0">
+			<div class="col s12 m12 l12">
+				<div class="card">
+					<div class="sideNavDivHeader">Role</div>
+					<label id="ROLL">0</label>&nbsp;<span>&deg</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin:0">
+			<div class="col s12 m12 l12">
+				<div class="card">
+					<div class="sideNavDivHeader">Yaw</div>
+					<label id="YAW">0</label>&nbsp;<span>&deg</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row" style="margin:0">
+			<div class="col s12 m12 l12">
+				<div class="card">
+					<div class="sideNavDivHeader">Altitude</div>
+					<label id="ALTITUDE">0</label>&nbsp;<span>m</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="mainArea">
+	<nav>
+		<div class="nav-wrapper menu">
+			<ul style="max-height:64px" id="nav-mobile" class="right">
+				<li><a href="" ng-click="flightData()"><i class="material-icons">settings_input_antenna</i></a></li>
+				<li id="notificationButton" onclick = "notificationClicked()"><a href=""><i class="material-icons">notifications</i></a></li>
+				<li><a href="" ng-click = "openNav()"><i class="material-icons">description</i></a></li>
+			</ul>
+			<div class="col s12">
+				<div style="padding-left:30px;">
+					<a href="#/" class="breadcrumb">Active Jobs</a>
+					<a href="#/job/{{id}}" class="breadcrumb">{{id}}</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div class="row" id="mainContent">
+		<div id="googleMap" style="height:100%" class="col s12 m12 l12">
+
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- <div class="fixed-action-btn" style="bottom: 90px; right: 27px;">
+	<a href="#/job/{{id}}" class="btn-floating  blue ">
+		<i class="material-icons white-text">description</i>
+	</a>
+</div>
+
+<div style="position:fixed;top: 64px; right: 0px;height:40px">
+	<a ng-click = "openNav()" style="height:65px;" class="btn btn-large black" href="">
+		<i class="material-icons">reply</i>
+		JOB SUMMARY
+	</a>
+</div> -->
+<div ng-if="loading" class="loading-wrapper">
+	<div class="loader"></div>
+	<p>Fetching Data...</p>
+</div>

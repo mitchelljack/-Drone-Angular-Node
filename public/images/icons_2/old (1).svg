@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="35px" height="30px" viewBox="0 0 35 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 9</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="35" height="30"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="35" height="30" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Inventory" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.61">
+        <g id="001_Inventory_Jobs" transform="translate(-926.000000, -72.000000)">
+            <g id="Group-3" transform="translate(864.000000, 21.000000)">
+                <g id="Group-9" transform="translate(62.000000, 51.000000)">
+                    <use id="Rectangle-92" stroke="#FFFFFF" mask="url(#mask-2)" stroke-width="2" xlink:href="#path-1"></use>
+                    <image id="Online-50" x="2.5" y="3" width="29.1666667" height="25" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAA1teXP8meAAAA9NJREFUaAXtl41x2zAMhZNOoBE0gkfQCBrBG9QbVCN4g2iDuhNYnSDpBHYmqDdwv8cAPsYWGSq/vp5wh4AiHh4eKCm2b25mm09gPoH5BOYTuKYTOB6PFb6Vf7Uu03FPrCZrsWLC8WFy8TsXSIOEYPeTqClYh7Lj8UCsJxV/ABgNC1xaZHdFLQC2Af5UuCgq+gQQmuJhltmWgCv8rw2SB2eZPiaJrpVpk8b0+0KyN+DmY6S8nRV9g2nsR9lI6tbJDng9CrqCTWkzjYTj5aPPpt+NrlQvNS1e9vIlSKmvxIG3CcjFNtgOl/XPkmxoSrf0sxdVAdYd9Pfp8mQibG5pPOotriIecLHe+sRPYoXL+tNmZgEuHqKoJkN3o75qjk0Zxmu6EzcEO7FgRbcX3FZg7M1DuAhxBcbCbxJgW8PvAgcXtW0cnDQXwS4dT6xy2Ck5ceEH4y49UMfXNxS6sE1JY/A7a7YswU/BRFqeTvmFYvAb1/IN7MLwDy/UaWhha/zx9va2JyYNbINvcbctiyZZQMI4H1nWYF1XrsQ1LyRuwGVNrkI5MOuAJOawYDrDjYXuhdqiHuKAvLEGgy52dlHnGljhYNgmhSXfGuZAXOGVudbak5XUD6kevg/PIrAxgwYJ5slcBHhv8ORtJ+/Drs65yGkY2XCe82tyLq7oK3tg48/UQUKdNx2LTkyszvPs1Z4/z8XXJRjHO1Yv+39hUwf5o6k5heSjRfq3nczSYhxau/gVb8briDv0inPZNYV7uz11FkgS3GDYJoUl3xhG4Ttem/8guuXqWwMNqR6+D87fp32RuKhwbU3WvjcWwXSGGwvdWI3vUdBbUbaH8OAaww66cHGdk6UiWD+BFz95rcnGGilo3aS4fR/MDpflHt8AB9MFpD7XWCztYuNkuQh2b/hlDveaXKRlX1IP3g9qqUFqE/a3sLh1PLEqqSnBiAvX13hZW1jj+DrgKfRTLiUYQrs3/jqMxcJ3Z5xDvJ9ag/UD3Z8wbHZG0p82MwuwC/xgNW/6qas28NwZlzgXmdanFLjealbxZm2bCtUpkVmAi4cpaj5GZzzqO2WIWG/9jBcin7B7lshcUNPiG7xo+DEq1RpHO5Yf2wPf4bL+Is9mE1JPL1x9AbiSDTTqbjx/yc+1AfC78vM8dy3XaNzisj6piaRu80EobJkEflECTaug7Elj/nHWAAbW7Xv1S/zes0qL6VIoe58A+iN2FcOgR0P4e7GedEgUPuCyol9qk8gngqUhKOE/5MTS8CFVUaxhphdP7pYvMB3SUuWRc3Y+gfkE5hOYT+CTT+AfjCnC9Nd49QUAAAAASUVORK5CYII="></image>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

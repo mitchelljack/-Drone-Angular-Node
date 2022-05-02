@@ -1,0 +1,175 @@
+
+<div class="row">
+	<div class="col l12 m12 s12">
+		<div class="card" style="margin:15 20 0 20">
+			<div style="background-color:#4A4A4A; padding:5px">
+				<h3 class="center white-text">{{title}}
+					<a href="#/inventory" style="display:inline-block;float:right;width:2.92rem;height:2.92rem;background-color:white;border-radius:50%;color:black;margin-right:15px">
+						<i style="padding-top:9px" class="material-icons">close</i>
+					</a>
+				</h3>
+			</div>
+			<div>
+				<form name="form" novalidate>
+					<div class="row">
+            <div class="col s12 m4 l5">.</div>
+            <div class="col s12 m4 l2">
+							<div ng-hide="picFile!=null" ngf-select ng-model="picFile" accept="image/*" id="getWidthOperator" ng-class="eid=='false' ? 'uav-empty-image' : 'uav-image'">
+									<img style="margin:10% 0% 10% 0%;width:100%;" ng-src="{{formInfo.image}}" ng-show="eid!='false'">
+									<img style="margin:10% 0% 10% 0%;width:100%;" src="images/dome2.png" ng-show="eid=='false'">
+							</div>
+							<div ng-hide="picFile==null" ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+									<img-crop style="height:300px;" image="picFile  | ngfDataUrl" result-image="formInfo.image" ng-init="formInfo.image=''"> </img-crop>
+							</div>
+        		</div>
+          </div>
+					<div class="row">
+
+						<div class="container">
+							<div class="col s12 m4 l4">
+								<label style="font-size:14px;" class="red-text">NAME*</label>
+								<div class="input-field">
+									<input required ng-model="formInfo.name" placeholder="Enter Name" type="text" class="validate">
+								</div>
+							</div>
+							<div class="col s12 m4 l4">
+								<label style="font-size:14px;" class="red-text">SERIAL NUMBER*</label>
+								<div class="input-field">
+									<input ng-disabled="eid!='false'" required ng-model="formInfo.serialNo" placeholder="Enter Serial Number" id="first_name" type="text" class="validate">
+								</div>
+							</div>
+							<div class="col s12 m4 l4">
+								<label style="font-size:14px;" class="red-text">Manufacturer*</label>
+								<div class="scroll-dropdown">
+									<div class="col s10 m10 l10">
+										<select ng-show = "isAdmin" ng-change= "changed('manufacturer')" required ng-model="formInfo.manufacturer" material-select watch>
+											<option value="link">+Add Manufacturer</option>
+											<option ng-repeat = "manufacturer in manufacturers">{{manufacturer}}</option>
+										</select>
+									</div>
+									<select ng-show = "!isAdmin" ng-change= "changed('manufacturer')" required ng-model="formInfo.manufacturer" material-select watch>
+										<option ng-repeat = "manufacturer in manufacturers">{{manufacturer}}</option>
+									</select>
+									<div  ng-show="isAdmin" class="col s2 m2 l1"><a ng-click="openDelete('manufacturer')" class="red-text waves-effect waves-light"><i class="material-icons">delete</i></a></div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="container">
+							<div class="col s12 m6 l6">
+								<label style="font-size:14px;" class="red-text">CONDITION*</label>
+								<div class="scroll-dropdown">
+									<div class="col s10 m2 l11">
+										<select ng-show="isAdmin" ng-change= "changed('condition')" required ng-model="formInfo.condition" material-select watch>
+											<option value="link">+Add Condition</option>
+											<option ng-repeat = "condition in conditions">{{condition}}</option>
+										</select>
+									</div>
+									<select ng-show="!isAdmin" ng-change= "changed('condition')" required ng-model="formInfo.condition" material-select watch>
+										<option ng-repeat = "condition in conditions">{{condition}}</option>
+									</select>
+									<div ng-show="isAdmin" class="col s2 m2 l1"><a ng-click="openDelete('condition')" class="red-text waves-effect waves-light"><i class="material-icons">delete</i></a></div>
+								</div>
+							</div>
+							<div class="col s12 m6 l6">
+								<label style="font-size:14px;" class="red-text">RELEASE STATUS*</label>
+								<div class="scroll-dropdown">
+									<div class="col s10 m2 l11">
+										<select ng-show = "isAdmin" ng-change= "changed('releaseStatus')" required ng-model="formInfo.releaseStatus" material-select watch>
+											<option value="link">+Add Release Status</option>
+											<option ng-repeat = "releaseStatus in releaseStats">{{releaseStatus}}</option>
+										</select>
+									</div>
+									<select ng-show = "!isAdmin" ng-change= "changed('releaseStatus')" required ng-model="formInfo.releaseStatus" material-select watch>
+										<option ng-repeat = "releaseStatus in releaseStats">{{releaseStatus}}</option>
+									</select>
+									<div cla ng-show="isAdmin"ss="col s2 m2 l1"><a ng-click="openDelete('releaseStatus')" class="red-text waves-effect waves-light"><i class="material-icons">delete</i></a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="container">
+							<div class="col s12 m6 l6">
+								<label style="font-size:14px;" class="red-text">MODEL TYPE*</label>
+								<div class="input-field scroll-dropdown">
+									<div class="col s10 m2 l11">
+										<select ng-show = "isAdmin" ng-change= "changed('modelType')" required ng-model="formInfo.modelType" material-select watch>
+											<option value="link">+Add Model Type</option>
+											<option ng-repeat = "modelType in modelTypes">{{modelType}}</option>
+										</select>
+									</div>
+									<select ng-show = "!isAdmin" ng-change= "changed('modelType')" required ng-model="formInfo.modelType" material-select watch>
+										<option ng-repeat = "modelType in modelTypes">{{modelType}}</option>
+									</select>
+									<div ng-show="isAdmin" class="col s2 m2 l1"><a ng-click="openDelete('modelType')" class="red-text waves-effect waves-light"><i class="material-icons">delete</i></a></div>
+								</div>
+							</div>
+
+							<div class="col s12 m6 l6">
+								<label style="font-size:14px;" class="red-text">DATE OF SERVICE*</label>
+								<div class="input-field">
+									<i class="material-icons prefix">today</i>
+									<input  required input-date type="text" name="created" id="" ng-model="formInfo.serviceDate">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row center">
+						<a ng-hide="loading" ng-class="{disabled : !form.$valid }" ng-click = "form.$valid && submit()" class="btn btn-floating btn-large white-text green">
+							<i class="material-icons">done</i>
+						</a>
+					</div>
+					<div class="row"><div style="margin-top:10%;" class="hide-on-small-only"></div></div>
+				</form>
+			</div>
+
+
+
+		</div>
+	</div>
+</div>
+<!-- Modal Structure -->
+<div id="addModal" class="modal">
+	<div class="modal-content">
+		<h4>Add a New Option</h4>
+		<div input-field>
+		<input type="text" id="addValue" length="150">
+			<label>Option Value</label>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button ng-click = addClicked() class="btn red" style="margin:15px;">Add</button>
+		<button ng-click = "closeAddModal()" class="btn light-blue" style="margin:15px;">Cancel</button>
+	</div>
+</div>
+
+<!-- Modal Structure -->
+<div id="addModal" class="modal">
+	<div class="modal-content">
+		<h4>Add a New Option</h4>
+		<div input-field>
+		<input type="text" id="addValue" length="150">
+			<label>Option Value</label>
+		</div>
+	</div>
+	<div class="modal-footer">
+		<button ng-click = deleteClicked() class="btn red" style="margin:15px;">Add</button>
+		<button ng-click = "closeDeleteModal()" class="btn light-blue" style="margin:15px;">Cancel</button>
+	</div>
+</div>
+
+
+<!-- Modal Structure -->
+<div id="deleteModal" class="modal">
+	<div class="modal-content">
+		<h4>Confirmation</h4>
+		<p>Are you sure you want to delete this?</p>
+	</div>
+	<div class="modal-footer">
+		<button ng-click = "deleteClicked()" class="btn red" style="margin:15px;">Delete</button>
+		<button ng-click = "closeDeleteModal()" class="btn light-blue" style="margin:15px;">Cancel</button>
+	</div>
+</div>
